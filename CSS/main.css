@@ -33,6 +33,10 @@ html, body{
     background-color: white;
 }
 
+#copyright {
+    background-color: #0094d5;
+}
+
 #finalIcons {
     margin-top: 5px;
     margin:0 auto 0 auto;
