@@ -5,6 +5,7 @@
                 Espero que se vea algo
             </div>
             <div id="listProducts" class="">
+                <?php echo getcwd() . "\n"; ?>
 
             </div>
         </div>
