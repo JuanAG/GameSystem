@@ -2,25 +2,15 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
+include 'PHP/AuxFunctions.php';
+
 getClientLanguage();
 
-
-//include 'myfile.php';
 ?>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 
-    <?php
-    if (isset($_COOKIE['userName']) && isset($_COOKIE['passWord'])) {
-
-        if (($_POST['userName'] != $user) || ($_POST['passWord'] != md5($pass))) {
-            //header('Location: login.php');
-        }
-        else {
-            echo 'Welcome back ' . $_COOKIE['userName'];
-        }
-    }
-    ?>
+    <?php getCookieLogin($user, $pass);?>
 
     <html>
     <head>
@@ -38,8 +28,8 @@ getClientLanguage();
                 <div id="search" class="">
                     <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
                         <fieldset id="searchBox" class=""><!--
-                                            --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
-                                            --><button id="searchButton" class="" name="searchButton" type="submit" value="search"></button>
+                            --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
+                            --><button id="searchButton" class="" name="searchButton" type="submit" value="search"></button>
                         </fieldset>
                     </form>
                 </div>
