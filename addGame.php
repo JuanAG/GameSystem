@@ -1,9 +1,5 @@
-<?php echo file_get_contents("/PHP/Header.php") ?>
+<?php echo file_get_contents(getcwd()."\PHP\Header.php") ?>
 
 /* Here is where the code for upload a file goes*/
 
-/* Here is where the code for upload a file goes*/
-
-/* Here is where the code for upload a file goes*/
-
-<?php echo file_get_contents("/PHP/Footer.php") ?>
+<?php echo file_get_contents(getcwd()."\PHP\Footer.php") ?>

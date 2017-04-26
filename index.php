@@ -1,13 +1,13 @@
-<?php echo file_get_contents("c:\gamesystem\PHP\Header.php") ?>
+<?php echo file_get_contents(getcwd()."\PHP\Header.php") ?>
 
         <div id="main" class="">
             <div id="slider" class="">
-                Espero que se vea algo
+
             </div>
             <div id="listProducts" class="">
-                <?php echo getcwd() . "\n"; ?>
+
 
             </div>
         </div>
 
-<?php echo file_get_contents("c:\gamesystem\PHP\Footer.php") ?>
+<?php echo file_get_contents(getcwd()."\PHP\Footer.php") ?>
