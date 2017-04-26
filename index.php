@@ -131,7 +131,7 @@ switch ($language) {
             <div id="divider" class="">
 
             </div>
-            <div id="finalIcons" class="">
+            <div id="finalIcons" class="white">
                 <img id="nintendo3DS" class="" src="/Images/Icons/3DS.png" />
                 <img id="logo" class="" src="/Images/Icons/ps4.png" />
                 <img id="logo" class="" src="/Images/Icons/Xbox.png" />

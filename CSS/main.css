@@ -33,3 +33,11 @@ html, body{
 .center {
     text-align: center;
 }
+
+.white{
+    background-color: white;
+}
+
+#finalIcons {
+    max-height: 40px;
+}
