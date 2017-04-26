@@ -1,0 +1,69 @@
+body {
+    background: none;
+}
+
+body #errorPage {
+    min-height: 400px;
+    max-width: 650px;
+    padding: 0;
+    margin: 60px auto;
+}
+
+body #errorPage >div {
+    margin-top: 30px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+body #errorPage a {
+    text-decoration: none;
+    color: #1158a6;
+}
+
+body #errorPage a:hover {
+    text-decoration: none;
+    color: #62d3f8;
+}
+
+#backgroundImage {
+    background: url(/Images/404.png) no-repeat;
+    padding: 50px 0;
+    margin-top: 150px;
+    margin-left: 215px;
+}
+
+#errorPage p a {
+    color: transparent;
+    font-size: 20px;
+    text-transform: lowercase;
+    border-bottom: 2px solid ;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.errorContentText {
+    margin-top: 30px;
+}
+
+.errorContentText h2 {
+    font-size: 36px;
+    color: #333;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.errorContentText p {
+    font-size: 20px;
+    color: #333;
+    font-weight: 400;
+    text-align: center;
+}
+
+div.midCenter {
+    position: relative;
+    top: 50%;
+}
+
+a {
+    font-size: 18px;
+}
