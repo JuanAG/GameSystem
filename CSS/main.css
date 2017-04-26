@@ -39,5 +39,10 @@ html, body{
 }
 
 #finalIcons {
-    max-height: 40px;
+    margin-top: 5px;
+}
+
+#finalIcons img {
+    max-height: 50px;
+    max-width: 25%;
 }
