@@ -132,10 +132,10 @@ switch ($language) {
 
             </div>
             <div id="finalIcons" class="white">
-                <img id="nintendo3DS" class="" src="/Images/Icons/3ds.png" /><!--
-                --><img id="logo" class="" src="/Images/Icons/ps4.png" /><!--
-                --><img id="logo" class="" src="/Images/Icons/xbox.png" /><!--
-                --><img id="logo" class="" src="/Images/Icons/paypal.png" />
+                <img id="nintendo3DSLogo" class="" src="/Images/Icons/3ds.png" /><!--
+                --><img id="ps4Logo" class="" src="/Images/Icons/ps4.png" /><!--
+                --><img id="xboxLogo" class="" src="/Images/Icons/xbox.png" /><!--
+                --><img id="paypalLogo" class="" src="/Images/Icons/paypal.png" />
             </div>
         </div>
     </body>
