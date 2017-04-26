@@ -48,13 +48,14 @@ html, body{
 #finalIcons img {
     display:inline-block;
     max-width: 25%;
-    margin-left: 1em;
+    margin-left: 4em;
+    max-height: 50px;
 }
 
 #nintendo3DSLogo {
-    margin-left: 10em;
+    margin-left: 7em;
 }
 
 #paypalLogo {
-    margin-right: 10em;
+    margin-right: 7em;
 }
