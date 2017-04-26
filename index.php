@@ -125,7 +125,7 @@ switch ($language) {
             <div id="topHeader" class="">
 
             </div>
-            <div id="copyright" class="">
+            <div id="copyright" class="center">
                 <?php echo Copyright; ?>
             </div>
             <div id="divider" class="">
