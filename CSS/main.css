@@ -10,6 +10,16 @@ html, body{
     width: 100%;
 }
 
+.center {
+    text-align: center;
+}
+
+.white{
+    background-color: white;
+}
+
+/* HEADER */
+
 #header > ul {
     list-style-type: none;
     margin: 0;
@@ -29,6 +39,10 @@ html, body{
     text-decoration: none;
 }
 
+#logo {
+    padding: 0.2em 6em 0 2em;
+}
+
 #searchButton {
     background:url(/Images/Icons/search.png) no-repeat center;
     background-color: #0094d5;
@@ -44,18 +58,14 @@ html, body{
     height: 40px;
 }
 
-.center {
-    text-align: center;
-}
 
-.white{
-    background-color: white;
-}
+
+/* FOOTER */
 
 #copyright {
     background-color: #0094d5;
     padding: 1em 0;
-    size: 1em;
+    font-size: 1.1em;
 }
 
 #finalIcons {

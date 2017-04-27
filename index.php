@@ -40,10 +40,10 @@ switch ($language) {
                 <li>
                     <div id="search" class="">
                         <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
-                            <fieldset id="searchBox" class=""><!--
+                            <div id="searchBox" class=""><!--
                             --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
                             --><button id="searchButton" class="" name="searchButton" type="submit" value="search"></button>
-                            </fieldset>
+                            </div>
                         </form>
                     </div>
                 </li>
@@ -99,6 +99,9 @@ switch ($language) {
                         </div>
                     </ul>*/ ?>
                     </a>
+
+                </li>
+                <li>
 
                 </li>
             </ul>
