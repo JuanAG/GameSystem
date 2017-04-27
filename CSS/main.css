@@ -4,6 +4,12 @@ html, body{
     margin: 0;
 }
 
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .fullWidth {
     background-color: #212830;
     color: white;
@@ -43,60 +49,31 @@ html, body{
     padding: 0.2em 6em 0 2em;
 }
 
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 #search {
-    background-color:black; padding:20px;
-}
-
-input[type="text"] {
-    padding: 7px;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    display: block;
-    border: solid 2px #bbb;
-    color: #6f6f6f;
-}
-
-input[type="submit"] {
-    background-color: #fafafa;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 1.0em;
-    font-weight:bold;
-    padding: 7px;
-    color: #6f6f6f;
-}
-
-input[type="submit"]:hover {
-    background-color: #ff379f;
-    color: #fafafa;
+    padding: 0.8em;
 }
 
 #searchInput {
     vertical-align: top;
-    display:inline-block;
-    font-size:0.9em;
-    font-weight:400;
-    border:0;
-    width:250px;
-    height:40px;
-    margin:0;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: 0;
+    width: 25em;
+    height: 40px;
+    margin: 0;
+    padding-left: 1em;
+    border-radius: 0.5em 0px 0 0.5em;
 }
 
 #searchButton {
-    display:inline-block;
-    border: 1px solid black;
-    border-width:0px 0px 0px 0px;
-    margin:0;
-    width:40px;
-    height:40px;
-    background:url(/Images/Icons/search.png) no-repeat center;
-    background-color: #0094d5;
+    background:url(/Images/Icons/search.png) #0094d5 no-repeat center;
+    display: inline-block;
+    border: 0 solid #212830;
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 0 0.5em 0.5em 0;
 }
 
 
