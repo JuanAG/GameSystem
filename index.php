@@ -47,7 +47,7 @@ switch ($language) {
                         </form>
                     </div>
                 </li>
-                <li>
+                <li class="floatLeft">
                     <a id="" class="" href="register.php">
                         <?php echo Register; ?>
                         <span id="" class="arrowDown"></span>
@@ -63,7 +63,7 @@ switch ($language) {
                         </ul>*/ ?>
                     </a>
                 </li>
-                <li id="accountLogin" class="">
+                <li id="accountLogin" class="floatLeft">
                     <a id="" class="" href="login.php">
                         <?php echo Login; ?>
                         <span id="" class="arrowDown"></span>

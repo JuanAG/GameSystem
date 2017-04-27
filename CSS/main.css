@@ -63,7 +63,7 @@ html, body{
     height: 40px;
     margin: 0;
     padding-left: 1em;
-    border-radius: 0.5em 0px 0 0.5em;
+    border-radius: 0.5em 0 0 0.5em;
 }
 
 #searchButton {
@@ -76,6 +76,9 @@ html, body{
     border-radius: 0 0.5em 0.5em 0;
 }
 
+.floatLeft {
+    float: left;
+}
 
 /* FOOTER */
 
