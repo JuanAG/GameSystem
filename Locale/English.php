@@ -17,4 +17,5 @@ define("RemenberMe","Remember Me");
 define("ForgotPass", "Forgot Password?");
 define("LoginIncorrect", "Username/Password Invalid");
 define("Copyright", "Copyright © ".date("Y")." ".GameSystem);
+define("Cart", "Cart");
 ?>

@@ -76,9 +76,11 @@ html, body{
     border-radius: 0 0.5em 0.5em 0;
 }
 
-.floatRigth {
-    float: right;
+#spacer {
+    width: 10%;
 }
+
+
 
 /* FOOTER */
 

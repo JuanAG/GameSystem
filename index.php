@@ -47,7 +47,10 @@ switch ($language) {
                         </form>
                     </div>
                 </li>
-                <li class="floatRigth">
+                <ul id="spacer" class="">
+                    <!-- Only separates the two parts of the menu -->
+                </ul>
+                <li id="accountRegisterLi" class="headerLinks">
                     <a id="" class="" href="register.php">
                         <?php echo Register; ?>
                         <span id="" class="arrowDown"></span>
@@ -63,7 +66,7 @@ switch ($language) {
                         </ul>*/ ?>
                     </a>
                 </li>
-                <li id="accountLogin" class="floatRigth">
+                <li id="accountLoginLi" class="headerLinks">
                     <a id="" class="" href="login.php">
                         <?php echo Login; ?>
                         <span id="" class="arrowDown"></span>
@@ -101,8 +104,10 @@ switch ($language) {
                     </a>
 
                 </li>
-                <li>
-
+                <li id="cartLi" class="headerLinks">
+                    <a id="" class="" href="cart.php">
+                        <?php echo Cart; ?>
+                    </a>
                 </li>
             </ul>
             <ul id="menu" class="">
