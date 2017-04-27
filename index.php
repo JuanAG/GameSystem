@@ -35,80 +35,84 @@ switch ($language) {
     </head>
     <body>
         <div id="header" class="fullWidth">
-            <div id="topHeader" class="">
-                <img id="logo" class="" src="/Images/logo.png" />
-                <div id="search" class="">
-                    <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
-                        <fieldset id="searchBox" class=""><!--
+            <ul id="topHeader" class="">
+                <li><img id="logo" class="" src="/Images/logo.png" /></li>
+                <li>
+                    <div id="search" class="">
+                        <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
+                            <fieldset id="searchBox" class=""><!--
                             --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
                             --><button id="searchButton" class="" name="searchButton" type="submit" value="search"></button>
-                        </fieldset>
-                    </form>
-                </div>
-                <div id="clientBox" class="">
-                    <div id="account" class="">
-                        <div id="accountRegister" class="">
-                            <a id="" class="" href="register.php">
-                                <?php echo Register; ?>
-                                <span id="" class="arrowDown"></span>
-                            </a>
-                            <ul id="" class="">
-                                <div id="" class="">
+                            </fieldset>
+                        </form>
+                    </div>
+                </li>
+                <li>
+                    <div id="clientBox" class="">
+                        <div id="account" class="">
+                            <div id="accountRegister" class="">
+                                <a id="" class="" href="register.php">
+                                    <?php echo Register; ?>
+                                    <span id="" class="arrowDown"></span>
+                                </a>
+                                <ul id="" class="">
                                     <div id="" class="">
-                                        <?php echo Register; ?>
-                                    </div>
-                                    <form id="registerForm" class="" action="register.php" method="post">
+                                        <div id="" class="">
+                                            <?php echo Register; ?>
+                                        </div>
+                                        <form id="registerForm" class="" action="register.php" method="post">
 
-                                    </form>
-                                </div>
-                            </ul>
-                        </div>
-                        <div id="accountLogin" class="">
-                            <a id="" class="" href="login.php">
-                                <?php echo Login; ?>
-                                <span id="" class="arrowDown"></span>
-                            </a>
-                            <ul id="" class="">
-                                <div id="" class="">
-                                    <div id="" class="">
-                                        <?php echo Login; ?>
+                                        </form>
                                     </div>
-                                    <form id="loginForm" class="" action="login.php" method="post">
+                                </ul>
+                            </div>
+                            <div id="accountLogin" class="">
+                                <a id="" class="" href="login.php">
+                                    <?php echo Login; ?>
+                                    <span id="" class="arrowDown"></span>
+                                </a>
+                                <ul id="" class="">
+                                    <div id="" class="">
                                         <div id="" class="">
-                                            <label for="username"><?php echo Username; ?></label>
-                                            <input id="username" class="" name="userName" placeholder="<?php echo Username; ?>">
+                                            <?php echo Login; ?>
                                         </div>
-                                        <div id="" class="">
-                                            <label for="password"><?php echo Username; ?></label>
-                                            <input id="password" class="" name="passWord" placeholder="<?php echo Password; ?>">
-                                        </div>
-                                        <div id="" class="">
+                                        <form id="loginForm" class="" action="login.php" method="post">
                                             <div id="" class="">
-                                                <input id="remember" class="" name="rememberMe" type="checkbox" checked>
-                                                <label for="remember"><?php echo RemenberMe; ?></label>
+                                                <label for="username"><?php echo Username; ?></label>
+                                                <input id="username" class="" name="userName" placeholder="<?php echo Username; ?>">
                                             </div>
                                             <div id="" class="">
-                                                <input id="loginButton" class="" name="loginButton" value="<?php echo Login; ?>" type="submit">
+                                                <label for="password"><?php echo Username; ?></label>
+                                                <input id="password" class="" name="passWord" placeholder="<?php echo Password; ?>">
                                             </div>
-                                        </div>
-                                        <div id="" class="">
-                                            <a id="" class="" href="recover.php">
-                                                <?php echo ForgotPass; ?>
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </ul>
+                                            <div id="" class="">
+                                                <div id="" class="">
+                                                    <input id="remember" class="" name="rememberMe" type="checkbox" checked>
+                                                    <label for="remember"><?php echo RemenberMe; ?></label>
+                                                </div>
+                                                <div id="" class="">
+                                                    <input id="loginButton" class="" name="loginButton" value="<?php echo Login; ?>" type="submit">
+                                                </div>
+                                            </div>
+                                            <div id="" class="">
+                                                <a id="" class="" href="recover.php">
+                                                    <?php echo ForgotPass; ?>
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="cart" class="">
+                            <label></label>
                         </div>
                     </div>
-                    <div id="cart" class="">
-                        <label></label>
-                    </div>
-                </div>
-            </div>
-            <div id="menu" class="">
+                </li>
+            </ul>
+            <ul id="menu" class="">
 
-            </div>
+            </ul>
         </div>
 
         <div id="main" class="">
