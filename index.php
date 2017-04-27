@@ -37,7 +37,7 @@ switch ($language) {
         <div id="header" class="fullWidth">
             <ul id="topHeader" class="">
                 <li><img id="logo" class="" src="/Images/logo.png" /></li>
-                <li>
+                <li id="searchLi" class="">
                     <div id="search" class="">
                         <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
                             <div id="searchBox" class=""><!--
@@ -47,7 +47,7 @@ switch ($language) {
                         </form>
                     </div>
                 </li>
-                <li class="floatLeft">
+                <li class="floatRigth">
                     <a id="" class="" href="register.php">
                         <?php echo Register; ?>
                         <span id="" class="arrowDown"></span>
@@ -63,7 +63,7 @@ switch ($language) {
                         </ul>*/ ?>
                     </a>
                 </li>
-                <li id="accountLogin" class="floatLeft">
+                <li id="accountLogin" class="floatRigth">
                     <a id="" class="" href="login.php">
                         <?php echo Login; ?>
                         <span id="" class="arrowDown"></span>

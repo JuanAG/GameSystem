@@ -76,8 +76,8 @@ html, body{
     border-radius: 0 0.5em 0.5em 0;
 }
 
-.floatLeft {
-    float: left;
+.floatRigth {
+    float: right;
 }
 
 /* FOOTER */
