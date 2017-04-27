@@ -54,8 +54,7 @@ switch ($language) {
                                 <a id="" class="" href="register.php">
                                     <?php echo Register; ?>
                                     <span id="" class="arrowDown"></span>
-                                </a>
-                                <ul id="" class="">
+                                    <?php /*<ul id="" class="">
                                     <div id="" class="">
                                         <div id="" class="">
                                             <?php echo Register; ?>
@@ -64,14 +63,14 @@ switch ($language) {
 
                                         </form>
                                     </div>
-                                </ul>
+                                    </ul>*/ ?>
+                                </a>
                             </div>
                             <div id="accountLogin" class="">
                                 <a id="" class="" href="login.php">
                                     <?php echo Login; ?>
                                     <span id="" class="arrowDown"></span>
-                                </a>
-                                <ul id="" class="">
+                                    <?php /*<ul id="" class="">
                                     <div id="" class="">
                                         <div id="" class="">
                                             <?php echo Login; ?>
@@ -101,7 +100,8 @@ switch ($language) {
                                             </div>
                                         </form>
                                     </div>
-                                </ul>
+                                </ul>*/ ?>
+                                </a>
                             </div>
                         </div>
                         <div id="cart" class="">
@@ -116,6 +116,7 @@ switch ($language) {
         </div>
 
         <div id="main" class="">
+        </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
             <div id="slider" class="">
 
             </div>
