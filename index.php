@@ -55,8 +55,10 @@ switch ($language) {
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
-                        <?php echo Cart; ?>
-                        <span id="cartIcon" class="icon"></span>
+                        <span>
+                            <?php echo Cart; ?>
+                        </span>
+                        <img id="cartIcon" class="icon" />
                     </a>
                 </li>
                 <li id="accountLoginLi" class="">
@@ -114,7 +116,7 @@ switch ($language) {
                     </a>
                 </li>
             </ul>
-            <ul id="menu" class="">
+            <ul id="menu" class="fullWidth">
                 <li>
                     <a href="search.php?plataform=pc">
                         <img id="pcIcon" class="" src="/Images/Icons/pcIcon.png" />
