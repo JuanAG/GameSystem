@@ -18,4 +18,8 @@ define("ForgotPass", "Olvide la contraseña");
 define("LoginIncorrect", "Nombre o contraseña incorrecta");
 define("Copyright", "Copyright © ".date("Y")." ".GameSystem);
 define("Cart", "Carrito");
+define("PC", "PC Master Race");
+define("DS", "Nintendo 3DS");
+define("PS4", "Playstation 4");
+define("XboxOne", "Xbox One");
 ?>

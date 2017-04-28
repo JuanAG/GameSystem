@@ -115,7 +115,38 @@ switch ($language) {
                 </li>
             </ul>
             <ul id="menu" class="">
-
+                <li>
+                    <a href="search.php?plataform=pc">
+                        <img id="pcIcon" class="" src="/Images/Icons/pcIcon.png" />
+                        <span>
+                            <?php echo PC; ?>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="search.php?plataform=3ds">
+                        <img id="3dsIcon" class="" src="/Images/Icons/3dsIcon.png" />
+                        <span>
+                            <?php echo DS; ?>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="search.php?plataform=ps4">
+                        <img id="`s4Icon" class="" src="/Images/Icons/psIcon.png" />
+                        <span>
+                            <?php echo PS4; ?>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="search.php?plataform=xbox">
+                        <img id="xboxIcon" class="" src="/Images/Icons/xboxIcon.png" />
+                        <span>
+                            <?php echo XboxOne; ?>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
 
