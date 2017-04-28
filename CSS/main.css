@@ -94,7 +94,6 @@ html, body{
     border-radius: 0.5em;
     text-align: center;
     vertical-align: middle;
-    padding: 0 1em;
 }
 
 #searchButton {
@@ -103,15 +102,6 @@ html, body{
     border: 0 solid #212830;
     margin: 0;
     border-radius: 0 0.5em 0.5em 0;
-}
-
-#spacer {
-    width: 10%;
-}
-
-.headerLinks {
-    padding: 0.5em;
-    font-size: 1.1em;
 }
 
 #registerIcon {
@@ -136,6 +126,14 @@ html, body{
 
 #cartLink:hover #cartIcon {
     background:url(/Images/Icons/cartBlue.png) white no-repeat center;
+}
+
+#cartLink {
+    margin-right: 3em;
+}
+
+#menu {
+
 }
 
 /* FOOTER */
