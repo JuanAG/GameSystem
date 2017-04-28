@@ -135,6 +135,10 @@ html, body{
     margin-right: 3em;
 }
 
+#menusSeparator {
+    background-color: #38424e;
+}
+
 #menu img {
     height: 40px;
     text-align: center;

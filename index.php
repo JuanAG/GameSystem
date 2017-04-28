@@ -52,6 +52,7 @@ switch ($language) {
                     </div>
                 </li>
             </ul>
+            <div id="menusSeparator" class="fullWidth" />
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
