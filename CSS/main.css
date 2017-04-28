@@ -26,6 +26,14 @@ html, body{
 
 /* HEADER */
 
+.linkHeader {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 0.85em 1em;
+    text-decoration: none;
+}
+
 #header > ul {
     list-style-type: none;
     margin: 0;
@@ -33,20 +41,25 @@ html, body{
     overflow: hidden;
 }
 
+#topHeaderLeft {
+    width: 70%;
+    float: left;
+    min-width: 40%;
+}
+
 #topHeaderLeft > li {
     float: left;
+    min-width: 35%;
+}
+
+#topHeaderRight{
+    width: 30%;
+    float: right;
+    min-width: 30%;
 }
 
 #topHeaderRight > li {
     float: right;
-}
-
-.linkHeader {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 0.85em 1em;
-    text-decoration: none;
 }
 
 #logo {
