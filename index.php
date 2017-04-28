@@ -110,9 +110,8 @@ switch ($language) {
                 </li>
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
-                        <span id="cartIcon" class="icon">
-                            <?php echo Cart; ?>
-                        </span>
+                        <?php echo Cart; ?>
+                        <span id="cartIcon" class="icon"></span>
                     </a>
                 </li>
             </ul>

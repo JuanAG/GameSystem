@@ -69,6 +69,7 @@ html, body{
 .icon {
     width: 40px;
     height: 40px;
+    display: inline-block;
 }
 
 #searchButton {
