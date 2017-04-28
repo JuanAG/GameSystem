@@ -37,7 +37,7 @@ switch ($language) {
         <div id="header" class="fullWidth">
             <ul id="topHeader" class="">
                 <li>
-                    <a id="logoLink" class="linkHeader" href="/">
+                    <a id="logoLink" class="" href="/">
                         <img id="logo" class="" src="/Images/logo.png" />
                     </a>
                 </li>
@@ -54,7 +54,7 @@ switch ($language) {
                 <li id="spacer" class="">
                     <!-- Only separates the two parts of the menu -->
                 </li>
-                <li id="accountRegisterLi" class="headerLinks">
+                <li id="accountRegisterLi" class="">
                     <a id="registerLink" class="linkHeader" href="register.php">
                         <?php echo Register; ?>
                         <span id="registerIcon" class="icon"></span>
@@ -70,7 +70,7 @@ switch ($language) {
                         </ul>*/ ?>
                     </a>
                 </li>
-                <li id="accountLoginLi" class="headerLinks">
+                <li id="accountLoginLi" class="">
                     <a id="loginLink" class="linkHeader" href="login.php">
                         <?php echo Login; ?>
                         <span id="loginIcon" class="icon"></span>
@@ -108,8 +108,8 @@ switch ($language) {
                     </a>
 
                 </li>
-                <li id="cartLi" class="headerLinks">
-                    <a id="cartLink" class="" href="cart.php">
+                <li id="cartLi" class="">
+                    <a id="cartLink" class="linkHeader" href="cart.php">
                         <span id="cartIcon" class="icon">
                             <?php echo Cart; ?>
                         </span>
