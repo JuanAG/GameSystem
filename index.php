@@ -53,20 +53,10 @@ switch ($language) {
                 </li>
             </ul>
             <ul id="topHeaderRight" class="">
-                <li id="accountRegisterLi" class="">
-                    <a id="registerLink" class="linkHeader" href="register.php">
-                        <?php echo Register; ?>
-                        <span id="registerIcon" class="icon"></span>
-                        <?php /*<ul id="" class="">
-                        <div id="" class="">
-                            <div id="" class="">
-                                <?php echo Register; ?>
-                            </div>
-                            <form id="registerForm" class="" action="register.php" method="post">
-
-                            </form>
-                        </div>
-                        </ul>*/ ?>
+                <li id="cartLi" class="">
+                    <a id="cartLink" class="linkHeader" href="cart.php">
+                        <?php echo Cart; ?>
+                        <span id="cartIcon" class="icon"></span>
                     </a>
                 </li>
                 <li id="accountLoginLi" class="">
@@ -107,10 +97,20 @@ switch ($language) {
                     </a>
 
                 </li>
-                <li id="cartLi" class="">
-                    <a id="cartLink" class="linkHeader" href="cart.php">
-                        <?php echo Cart; ?>
-                        <span id="cartIcon" class="icon"></span>
+                <li id="accountRegisterLi" class="">
+                    <a id="registerLink" class="linkHeader" href="register.php">
+                        <?php echo Register; ?>
+                        <span id="registerIcon" class="icon"></span>
+                        <?php /*<ul id="" class="">
+                        <div id="" class="">
+                            <div id="" class="">
+                                <?php echo Register; ?>
+                            </div>
+                            <form id="registerForm" class="" action="register.php" method="post">
+
+                            </form>
+                        </div>
+                        </ul>*/ ?>
                     </a>
                 </li>
             </ul>
