@@ -26,10 +26,6 @@ html, body{
 
 /* HEADER */
 
-#header {
-    height: 4.2em;
-}
-
 .linkHeader {
     display: block;
     color: white;
