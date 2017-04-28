@@ -131,7 +131,30 @@ html, body{
     margin-right: 3em;
 }
 
+#menu img {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
 #menu {
+    width: 100%;
+    display: table;
+    text-align: center;
+}
+
+#menu  li{
+    display: inline-block;
+    float: none;
+}
+
+@media screen and (max-width: 600px){
+
+    #menu {
+        background-color: purple;
+        display: inline-grid;
+    }
 
 }
 
