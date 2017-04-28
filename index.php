@@ -36,7 +36,11 @@ switch ($language) {
     <body>
         <div id="header" class="fullWidth">
             <ul id="topHeader" class="">
-                <li><img id="logo" class="" src="/Images/logo.png" /></li>
+                <li>
+                    <a href="/">
+                        <img id="logo" class="" src="/Images/logo.png" />
+                    </a>
+                </li>
                 <li id="searchLi" class="">
                     <div id="search" class="">
                         <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
@@ -47,10 +51,9 @@ switch ($language) {
                         </form>
                     </div>
                 </li>
-                <ul id="spacer" class="">
+                <li id="spacer" class="">
                     <!-- Only separates the two parts of the menu -->
-                    <div></div>
-                </ul>
+                </li>
                 <li id="accountRegisterLi" class="headerLinks">
                     <a id="registerLink" class="" href="register.php">
                         <?php echo Register; ?>
