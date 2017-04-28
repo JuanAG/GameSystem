@@ -58,7 +58,7 @@ switch ($language) {
                         <span>
                             <?php echo Cart; ?>
                         </span>
-                        <img id="cartIcon" class="icon" src="/Images/Icons/cartBlue.png" />
+                        <img id="cartIcon" class="icon" src="/Images/Icons/blank.png" />
                     </a>
                 </li>
                 <li id="accountLoginLi" class="">
@@ -66,7 +66,7 @@ switch ($language) {
                         <span>
                             <?php echo Login; ?>
                         </span>
-                        <img id="loginIcon" class="icon" src="/Images/Icons/loginBlue.png" />
+                        <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
                         <?php /*<ul id="" class="">
                         <div id="" class="">
                             <div id="" class="">
@@ -106,7 +106,7 @@ switch ($language) {
                         <span>
                             <?php echo Register; ?>
                         </span>
-                        <img id="registerIcon" class="icon" src="/Images/Icons/clientBlue.png" />
+                        <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
                         <?php /*<ul id="" class="">
                         <div id="" class="">
                             <div id="" class="">
