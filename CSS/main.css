@@ -66,13 +66,16 @@ html, body{
     border-radius: 0.5em 0 0 0.5em;
 }
 
+.icon {
+    width: 40px;
+    height: 40px;
+}
+
 #searchButton {
     background:url(/Images/Icons/search.png) #0094d5 no-repeat center;
     display: inline-block;
     border: 0 solid #212830;
     margin: 0;
-    width: 40px;
-    height: 40px;
     border-radius: 0 0.5em 0.5em 0;
 }
 
@@ -80,7 +83,34 @@ html, body{
     width: 10%;
 }
 
+.headerLinks {
+    padding: 0.5em;
+    font-size: 1.1em;
+}
 
+#registerIcon {
+    background:url(/Images/Icons/clientWhite.png) #0094d5 no-repeat center;
+}
+
+#registerLink:hover #registerIcon {
+    background:url(/Images/Icons/clientBlue.png) white no-repeat center;
+}
+
+#loginIcon {
+    background:url(/Images/Icons/loginWhite.png) #0094d5 no-repeat center;
+}
+
+#loginLink:hover #loginIcon {
+    background:url(/Images/Icons/loginBlue.png) white no-repeat center;
+}
+
+#cartIcon {
+    background:url(/Images/Icons/cartWhite.png) #0094d5 no-repeat center;
+}
+
+#cartLink:hover #cartIcon {
+    background:url(/Images/Icons/cartBlue.png) white no-repeat center;
+}
 
 /* FOOTER */
 

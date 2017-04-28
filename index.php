@@ -42,18 +42,19 @@ switch ($language) {
                         <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
                             <div id="searchBox" class=""><!--
                             --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
-                            --><button id="searchButton" class="" name="searchButton" type="submit" value="search"></button>
+                            --><button id="searchButton" class="icon" name="searchButton" type="submit" value="search"></button>
                             </div>
                         </form>
                     </div>
                 </li>
                 <ul id="spacer" class="">
                     <!-- Only separates the two parts of the menu -->
+                    <div></div>
                 </ul>
                 <li id="accountRegisterLi" class="headerLinks">
-                    <a id="" class="" href="register.php">
+                    <a id="registerLink" class="" href="register.php">
                         <?php echo Register; ?>
-                        <span id="" class="arrowDown"></span>
+                        <span id="registerIcon" class="icon"></span>
                         <?php /*<ul id="" class="">
                         <div id="" class="">
                             <div id="" class="">
@@ -67,9 +68,9 @@ switch ($language) {
                     </a>
                 </li>
                 <li id="accountLoginLi" class="headerLinks">
-                    <a id="" class="" href="login.php">
+                    <a id="loginLink" class="" href="login.php">
                         <?php echo Login; ?>
-                        <span id="" class="arrowDown"></span>
+                        <span id="loginIcon" class="icon"></span>
                         <?php /*<ul id="" class="">
                         <div id="" class="">
                             <div id="" class="">
@@ -105,8 +106,9 @@ switch ($language) {
 
                 </li>
                 <li id="cartLi" class="headerLinks">
-                    <a id="" class="" href="cart.php">
+                    <a id="cartLink" class="" href="cart.php">
                         <?php echo Cart; ?>
+                        <span id="cartIcon" class="icon"></span>
                     </a>
                 </li>
             </ul>
