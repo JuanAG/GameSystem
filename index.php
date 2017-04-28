@@ -35,7 +35,7 @@ switch ($language) {
     </head>
     <body>
         <div id="header" class="fullWidth">
-            <ul id="topHeader" class="">
+            <ul id="topHeaderLeft" class="">
                 <li>
                     <a id="logoLink" class="" href="/">
                         <img id="logo" class="" src="/Images/logo.png" />
@@ -51,9 +51,8 @@ switch ($language) {
                         </form>
                     </div>
                 </li>
-                <li id="spacer" class="">
-                    <!-- Only separates the two parts of the menu -->
-                </li>
+            </ul>
+            <ul id="topHeaderRight" class="">
                 <li id="accountRegisterLi" class="">
                     <a id="registerLink" class="linkHeader" href="register.php">
                         <?php echo Register; ?>

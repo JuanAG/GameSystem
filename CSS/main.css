@@ -33,15 +33,19 @@ html, body{
     overflow: hidden;
 }
 
-#topHeader > li {
+#topHeaderLeft > li {
     float: left;
+}
+
+#topHeaderRight > li {
+    float: right;
 }
 
 .linkHeader {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 0.85em 1em;
     text-decoration: none;
 }
 
