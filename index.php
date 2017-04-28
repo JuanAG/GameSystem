@@ -52,7 +52,7 @@ switch ($language) {
                     </div>
                 </li>
             </ul>
-            <div id="menusSeparator" class="fullWidth" />
+            <div id="menusSeparator" class="fullWidth"></div>
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
@@ -158,7 +158,8 @@ switch ($language) {
         </div>
 
         <div id="main" class="">
-        </br></br></br></br></br></br></br></br></br></br></br></br></br>
+            Lorem ipun dolor
+            </br></br></br></br></br></br></br></br></br></br></br></br></br>
             <div id="slider" class="">
 
             </div>
