@@ -37,7 +37,7 @@ switch ($language) {
         <div id="header" class="fullWidth">
             <ul id="topHeader" class="">
                 <li>
-                    <a href="/">
+                    <a id="logoLink" href="/">
                         <img id="logo" class="" src="/Images/logo.png" />
                     </a>
                 </li>
@@ -110,8 +110,9 @@ switch ($language) {
                 </li>
                 <li id="cartLi" class="headerLinks">
                     <a id="cartLink" class="" href="cart.php">
-                        <?php echo Cart; ?>
-                        <span id="cartIcon" class="icon"></span>
+                        <span id="cartIcon" class="icon">
+                            <?php echo Cart; ?>
+                        </span>
                     </a>
                 </li>
             </ul>
