@@ -65,6 +65,10 @@ html, body{
     float: right;
 }
 
+#topHeaderRight img {
+    margin: 10px;
+}
+
 #logo {
     padding: 0.2em 6em 0 2em;
 }
