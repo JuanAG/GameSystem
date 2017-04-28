@@ -52,7 +52,6 @@ switch ($language) {
                     </div>
                 </li>
             </ul>
-            <div id="menusSeparator" class="fullWidth"></div>
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
@@ -121,6 +120,7 @@ switch ($language) {
                     </a>
                 </li>
             </ul>
+            <div id="menusSeparator" class="fullWidth"></div>
             <ul id="menu" class="fullWidth">
                 <li>
                     <a href="search.php?plataform=pc">
