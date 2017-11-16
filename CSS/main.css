@@ -41,7 +41,7 @@ html, body{
 }
 
 #topHeaderLeft {
-    width: 70%;
+    width: 68%;
     float: left;
     min-width: 40%;
 }
@@ -51,8 +51,8 @@ html, body{
     min-width: 35%;
 }
 
-#topHeaderRight{
-    width: 30%;
+#topHeaderRight {
+    width: 28%;
     float: right;
     min-width: 30%;
 }
@@ -147,7 +147,7 @@ html, body{
     text-align: center;
 }
 
-#menu  li{
+#menu li{
     display: inline-block;
     float: none;
 }
