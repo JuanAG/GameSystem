@@ -158,7 +158,7 @@ switch ($language) {
         </div>
 
         <div id="main" class="">
-            Lorem ipun dolor
+            Lorem ipun dolor, mucho dolor
             </br></br></br></br></br></br></br></br></br></br></br></br></br>
             <div id="slider" class="">
 
