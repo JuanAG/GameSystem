@@ -21,7 +21,7 @@ echo '<br/>';
 echo '<br/>';
 
 // Create connection to Oracle
-$conn = oci_connect("gamesystem", "gamesystem", "http://www.gamesystem.shop/");
+$conn = oci_connect("GAMESYSTEM", "GAMESYSTEM", "http://www.gamesystem.shop/");
 
 if (!$conn) {
     $m = oci_error();
