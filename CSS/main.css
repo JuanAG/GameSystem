@@ -119,7 +119,33 @@ html, body{
     background:url(/Images/Icons/loginBlue.png) white no-repeat center;
 }
 
-.showLogin
+/* To show and hide the forms for login or cart */
+
+#mainLoginForm {
+    display: inline-block;
+}
+
+.box{
+    border-radius:0px;
+    overflow:hidden;
+    white-space: nowrap;
+    transition:all .2s ease;
+    border:3px solid #8BF;
+}
+
+.showLogin {
+    background-color: white;
+    width: 20em;
+    transition-delay: 0s;
+    height: 20em;
+}
+
+.showCart {
+    background-color: white;
+    width: 20em;
+    transition-delay: 0s;
+    height: 20em;
+}
 
 #cartIcon {
     background:url(/Images/Icons/cartWhite.png) #0094d5 no-repeat center;

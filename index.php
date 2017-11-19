@@ -60,6 +60,9 @@ switch ($language) {
                             <?php echo Cart; ?>
                         </span>
                         <img id="cartIcon" class="icon" src="/Images/Icons/blank.png" />
+                        <div id="cartReduced" class="box">
+
+                        </div>
                     </a>
                 </li>
                 <li id="accountLoginLi" class="">
@@ -68,7 +71,7 @@ switch ($language) {
                             <?php echo Login; ?>
                         </span>
                         <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
-                        <div id="mainLoginForm">
+                        <div id="mainLoginForm" class="box">
                             <form>
                                 <fieldset id="inputsLogin">
                                     <input id="user" type="text" name="mail">
