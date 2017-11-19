@@ -32,7 +32,7 @@ switch ($language) {
         <link rel="icon" type="image/png" href="/Images/favicon16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="/Images/favicon32.png" sizes="32x32" />
         <link rel="stylesheet" type="text/css" href="CSS/main.css">
-
+        <script src="main.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="header" class="fullWidth">
