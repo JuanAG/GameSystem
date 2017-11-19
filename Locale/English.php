@@ -22,4 +22,5 @@ define("PC", "PC Master Race");
 define("DS", "Nintendo 3DS");
 define("PS4", "Playstation 4");
 define("XboxOne", "Xbox One");
+define("keepSignedIn", "Keep me signed in");
 ?>

@@ -32,6 +32,7 @@ switch ($language) {
         <link rel="icon" type="image/png" href="/Images/favicon16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="/Images/favicon32.png" sizes="32x32" />
         <link rel="stylesheet" type="text/css" href="CSS/main.css">
+
     </head>
     <body>
         <div id="header" class="fullWidth">
@@ -55,68 +56,39 @@ switch ($language) {
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
-                                <span>
-                                    <?php echo Cart; ?>
-                                </span>
+                        <span>
+                            <?php echo Cart; ?>
+                        </span>
                         <img id="cartIcon" class="icon" src="/Images/Icons/blank.png" />
                     </a>
                 </li>
                 <li id="accountLoginLi" class="">
                     <a id="loginLink" class="linkHeader" href="login.php">
-                                <span>
-                                    <?php echo Login; ?>
-                                </span>
+                        <span>
+                            <?php echo Login; ?>
+                        </span>
                         <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
-                        <?php /*<ul id="" class="">
-                                <div id="" class="">
-                                    <div id="" class="">
-                                        <?php echo Login; ?>
-                                    </div>
-                                    <form id="loginForm" class="" action="login.php" method="post">
-                                        <div id="" class="">
-                                            <label for="username"><?php echo Username; ?></label>
-                                            <input id="username" class="" name="userName" placeholder="<?php echo Username; ?>">
-                                        </div>
-                                        <div id="" class="">
-                                            <label for="password"><?php echo Username; ?></label>
-                                            <input id="password" class="" name="passWord" placeholder="<?php echo Password; ?>">
-                                        </div>
-                                        <div id="" class="">
-                                            <div id="" class="">
-                                                <input id="remember" class="" name="rememberMe" type="checkbox" checked>
-                                                <label for="remember"><?php echo RemenberMe; ?></label>
-                                            </div>
-                                            <div id="" class="">
-                                                <input id="loginButton" class="" name="loginButton" value="<?php echo Login; ?>" type="submit">
-                                            </div>
-                                        </div>
-                                        <div id="" class="">
-                                            <a id="" class="" href="recover.php">
-                                                <?php echo ForgotPass; ?>
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </ul>*/ ?>
+                        <div id="mainLoginForm">
+                            <form>
+                                <fieldset id="inputsLogin">
+                                    <input id="user" type="text" name="mail">
+                                    <input id="pass" type="password" name="pass">
+                                </fieldset>
+                                <fieldset id="actionsLogin">
+                                    <input type="submit" id="submit" value="Login">
+                                    <label><input type="checkbox" checked="checked"></label>
+                                </fieldset>
+                            </form>
+                        </div>
                     </a>
 
                 </li>
                 <li id="accountRegisterLi" class="">
                     <a id="registerLink" class="linkHeader" href="register.php">
-                                <span>
-                                    <?php echo Register; ?>
-                                </span>
+                        <span>
+                            <?php echo Register; ?>
+                        </span>
                         <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
-                        <?php /*<ul id="" class="">
-                                <div id="" class="">
-                                    <div id="" class="">
-                                        <?php echo Register; ?>
-                                    </div>
-                                    <form id="registerForm" class="" action="register.php" method="post">
-
-                                    </form>
-                                </div>
-                                </ul>*/ ?>
                     </a>
                 </li>
             </ul>
@@ -126,32 +98,32 @@ switch ($language) {
                     <a href="search.php?plataform=pc">
                         <img id="pcIcon" class="" src="/Images/Icons/pcIcon.png" />
                         <span>
-                                    <?php echo PC; ?>
-                                </span>
+                            <?php echo PC; ?>
+                        </span>
                     </a>
                 </li>
                 <li>
                     <a href="search.php?plataform=3ds">
                         <img id="3dsIcon" class="" src="/Images/Icons/3dsIcon.png" />
                         <span>
-                                    <?php echo DS; ?>
-                                </span>
+                            <?php echo DS; ?>
+                        </span>
                     </a>
                 </li>
                 <li>
                     <a href="search.php?plataform=ps4">
                         <img id="`s4Icon" class="" src="/Images/Icons/psIcon.png" />
                         <span>
-                                    <?php echo PS4; ?>
-                                </span>
+                            <?php echo PS4; ?>
+                        </span>
                     </a>
                 </li>
                 <li>
                     <a href="search.php?plataform=xbox">
                         <img id="xboxIcon" class="" src="/Images/Icons/xboxIcon.png" />
                         <span>
-                                    <?php echo XboxOne; ?>
-                                </span>
+                            <?php echo XboxOne; ?>
+                        </span>
                     </a>
                 </li>
             </ul>
