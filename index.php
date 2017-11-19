@@ -160,6 +160,7 @@ switch ($language) {
         <div id="main" class="">
             Lorem ipun dolor, mucho dolor
             </br></br></br></br></br></br></br></br></br></br></br></br></br>
+            Pero vamos tirando
             <div id="slider" class="">
 
             </div>
