@@ -1,13 +1,13 @@
 // Para el login
 
 $("#accountLoginLi").mouseenter( function () {
-    $("#accountLoginLi").addClass("muestraLogin");
+    $("#accountLoginLi").addClass("showLogin");
 });
 
 $("#loginbox").mouseleave( function () {
 
     if (!$("#mainLoginForm").is(":focus")) {
-        $("#accountLoginLi").removeClass("muestraLogin");
+        $("#accountLoginLi").removeClass("showLogin");
     }
 
 });

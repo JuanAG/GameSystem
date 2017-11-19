@@ -119,6 +119,8 @@ html, body{
     background:url(/Images/Icons/loginBlue.png) white no-repeat center;
 }
 
+.showLogin
+
 #cartIcon {
     background:url(/Images/Icons/cartWhite.png) #0094d5 no-repeat center;
 }
