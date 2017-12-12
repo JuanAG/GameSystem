@@ -252,6 +252,7 @@ function getGameToShow(){
             $answer = $answer."<div class=\"separatorOrange\"></div>";
 
         $answer = $answer."</div>";
+    $answer = $answer."</div>";
 
     return $answer."</div>";
 }
