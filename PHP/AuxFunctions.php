@@ -233,13 +233,13 @@ function getGameToShow(){
             $answer = $answer."</div>";
             $answer = $answer."<div id=\"gamePhotos\">";
                 // Get some random numbers for the photos
-                $ranNumbers = range(0, count($photos['NOMBRE'])-1);
-                shuffle($ranNumbers);
+                $photosRan = $photos['NOMBRE'];
+                shuffle($photosRan);
 
                 // select the number of photos
                 for($i = 0; $i < getGamesPhotos(); $i++){
-                    $aux = $ranNumbers[$i];
-                    $photoName = trim($photos['NOMBRE'][$aux]);
+                    $aux = $photosRan[$i];
+                    $photoName = trim($photosRan[$i]);
                     $answer = $answer."<img class=\"gamePhoto\" src=\"/Images/Games/".$id."/big/".$photoName."\">";
                 }
             $answer = $answer."</div>";
