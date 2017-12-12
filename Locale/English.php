@@ -18,7 +18,7 @@ define("ForgotPass", "Forgot Password?");
 define("LoginIncorrect", "Username/Password Invalid");
 define("Copyright", "Copyright © ".date("Y")." ".GameSystem);
 define("Cart", "Cart");
-define("PC", "PC Master Racer");
+define("PC", "PC Master Race");
 define("DS", "Nintendo 3DS");
 define("PS4", "Playstation 4");
 define("XboxOne", "Xbox One");
