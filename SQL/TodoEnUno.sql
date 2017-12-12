@@ -1150,7 +1150,7 @@ BEGIN
                     SELECT DISTINCT F.idJuego, SUM(F.cantidad) AS cantidad
                     FROM Facturas F INNER JOIN Compras C ON F.idFactura = C.idFacturaCompra
                     GROUP BY F.idJuego
-                    ORDER BY cantidad DESC
+                    ORDER BY cantidad DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )

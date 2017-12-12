@@ -1,8 +1,9 @@
 <?php
 
 header('Content-Type: text/html; charset=utf-8');
+setcookie("loginUser", null, null, '/');
 
-include 'PHP/AuxFunctions.php';
+require 'PHP/AuxFunctions.php';
 
 // Get the proper language for the client
 $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -32,7 +33,13 @@ switch ($language) {
         <link rel="icon" type="image/png" href="/Images/favicon16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="/Images/favicon32.png" sizes="32x32" />
         <link rel="stylesheet" type="text/css" href="CSS/main.css">
-        <script src="main.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="CSS/slider.css">
+        <link rel="stylesheet" type="text/css" href="CSS/autoComplete.css">
+        <link rel="stylesheet" type="text/css" href="CSS/searchAndCart.css">
+        <link rel="stylesheet" type="text/css" href="CSS/phone.css">
+        <script src="JS/main.js" type="text/javascript"></script>
+        <script src="JS/autocomplete.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <div id="header" class="fullWidth">
@@ -46,9 +53,11 @@ switch ($language) {
                     <div id="search" class="">
                         <form id="searchBoxForm" class="roundedBorders" action="/search.php" method="get">
                             <div id="searchBox" class=""><!--
-                                    --><input id="searchInput" class="" name="searchText" type="text" placeholder="<?php echo Search; ?>"><!--
+                                    --><input id="searchInput" class="" name="searchText" type="text" onkeyup="changeInput(this.value)"
+                                                                                                        placeholder="<?php echo Search; ?>"><!--
                                     --><button id="searchButton" class="icon" name="searchButton" type="submit" value="search"></button>
                             </div>
+                            <div  id="quickSearchResult"></div >
                         </form>
                     </div>
                 </li>
@@ -60,40 +69,36 @@ switch ($language) {
                             <?php echo Cart; ?>
                         </span>
                         <img id="cartIcon" class="icon" src="/Images/Icons/blank.png" />
-                        <div id="cartReduced" class="box">
-
-                        </div>
                     </a>
                 </li>
-                <li id="accountLoginLi" class="">
-                    <a id="loginLink" class="linkHeader" href="login.php">
+                <?php if(!isset($_COOKIE['loginUser'])) {
+                    ?>
+                    <li id="accountLoginLi" class="">
+                        <a id="loginLink" class="linkHeader" href="login.php">
+                            <span>
+                                <?php echo Login; ?>
+                            </span>
+                            <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
+                        </a>
+                    </li>
+                    <li id="accountRegisterLi" class="">
+                        <a id="registerLink" class="linkHeader" href="register.php">
+                            <span>
+                                <?php echo Register; ?>
+                            </span>
+                            <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
+                        </a>
+                    </li>
+                <?php }
+                else { ?>
+                <li>
+                    <div id="userCookie" class="pene">
                         <span>
-                            <?php echo Login; ?>
+                            <?php echo Hello.$_COOKIE['loginUser']; ?>
                         </span>
-                        <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
-                        <div id="mainLoginForm" class="box">
-                            <form>
-                                <fieldset id="inputsLogin">
-                                    <input id="user" type="text" name="mail">
-                                    <input id="pass" type="password" name="pass">
-                                </fieldset>
-                                <fieldset id="actionsLogin">
-                                    <input type="submit" id="submit" value="Login">
-                                    <label><input type="checkbox" checked="checked"></label>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </a>
-
+                    </div>
                 </li>
-                <li id="accountRegisterLi" class="">
-                    <a id="registerLink" class="linkHeader" href="register.php">
-                        <span>
-                            <?php echo Register; ?>
-                        </span>
-                        <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
-                    </a>
-                </li>
+                <?php }?>
             </ul>
             <div id="menusSeparator" class="fullWidth"></div>
             <ul id="menu" class="fullWidth">
@@ -133,16 +138,28 @@ switch ($language) {
         </div>
 
         <div id="main" class="">
-            Lorem ipun dolor, mucho dolor
-            </br></br></br></br></br></br></br></br></br></br></br></br></br>
-            Pero vamos tirando
-            <div id="slider" class="">
+            <?php echo getSlider(SliderInfo) ?>
+            <script>
+                var gameIndex = 0;
+                slider();
 
-            </div>
-            <div id="listProducts" class="">
+                function slider() {
+                    var i;
+                    var x = document.getElementsByClassName("hide");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    gameIndex++;
+                    if (gameIndex > x.length) {
+                        gameIndex = 1
+                    }
+                    x[gameIndex-1].style.display = "block";
 
-
-            </div>
+                    setTimeout(slider, 5000);
+                }
+            </script>
+            <?php echo getTopFutureGames(mainFutureGames)?>
+            <?php echo getTopNewerGames(mainNewerGames)?>
         </div>
 
         <div id="footer" class="fullWidth">

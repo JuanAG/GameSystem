@@ -1,0 +1,77 @@
+#quickSearchResults {
+    margin-top: 1em;
+    padding-left: 1.2em;
+    padding-bottom: 1em;
+}
+
+.quickSearchGame {
+    display: table;
+}
+
+.left, .quickSearchPhoto {
+    float: left;
+}
+
+.right, .quickSearchData {
+    float: right;
+}
+
+#quickSearchResult {
+    float: left;
+    position: absolute;
+    color: black;
+    background-color: white;
+    margin-top: 0.1em;
+    width: 30em;
+    border-radius: 0.5em;
+    text-decoration: none;
+}
+
+#quickSearchResult ul {
+    list-style: none;
+}
+
+.quickSearchGame {
+    width: 100%;
+}
+
+.quickSearchPhoto {
+    width: 24%;
+}
+
+.quickSearchData {
+    width: 74%;
+    color: black;
+    font-style: normal;
+    text-align: center;
+    padding: 0 1.5em;
+}
+
+.quickSearchPricePlatform {
+    display: table;
+    width: 100%;
+    margin-right: 1em;
+}
+
+#quickSearchPriceGame {
+    float: left;
+    color: orange;
+}
+
+.quickSearchPlatform {
+    float: right;
+    display: table;
+}
+
+.quickSearchPlatform p {
+    float: right;
+}
+
+.quickSearchPlatform img {
+    float: right;
+}
+
+.quickSearchGameName {
+    font-weight: bold;
+    font-size: 1.2em;
+}

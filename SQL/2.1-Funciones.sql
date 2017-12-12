@@ -658,7 +658,7 @@ BEGIN
                     SELECT DISTINCT F.idJuego, SUM(F.cantidad) AS cantidad
                     FROM Facturas F INNER JOIN Compras C ON F.idFactura = C.idFacturaCompra
                     GROUP BY F.idJuego
-                    ORDER BY cantidad DESC
+                    ORDER BY cantidad DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )
@@ -703,7 +703,7 @@ BEGIN
                     SELECT *
                     FROM Facturas F 
                     WHERE F.idSocio = 0
-                    ORDER BY F.FechaEntrega DESC
+                    ORDER BY F.FechaEntrega DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )
@@ -745,7 +745,7 @@ BEGIN
                     SELECT *
                     FROM Facturas F INNER JOIN PedidosProveedor PP ON F.idFactura = PP.idCompraFactura
                     WHERE F.idSocio = 0 AND PP.esEntregado = 'N'
-                    ORDER BY F.FechaPedido DESC
+                    ORDER BY F.FechaPedido DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )
@@ -1032,7 +1032,7 @@ BEGIN
     WHERE L.Usuario = usuario_ AND L.Pass = pass_;
     IF cantidad > 0 THEN
     
-          SELECT L.idLogin INTO cantidad
+          SELECT COUNT(L.idLogin) INTO cantidad
           FROM Login L
           WHERE L.Usuario = usuario_ AND L.Pass = pass_;
           
@@ -1474,7 +1474,7 @@ BEGIN
                                               ) 
                                               R INNER JOIN Multimedia M ON M.idMultimedia = R.idJuego
                                                 INNER JOIN Juegos J ON J.idJuego = M.idMultimedia
-                                        WHERE J.nombre LIKE '%' || UPPER(nombre_) || '%'
+                                        WHERE UPPER(J.nombre) LIKE ('%' || UPPER(nombre_) || '%')
                                       )
                                       R2 ON J.idJuego = R2.idJuego
           ) A;
@@ -1643,7 +1643,7 @@ BEGIN
     FROM TABLE(resAnt) A
     WHERE (
             --El nombre
-            (A.nombre LIKE '%' || UPPER(nombreAux) || '%' ) AND
+            (UPPER(A.nombre) LIKE ('%' || UPPER(nombreAux) || '%' )) AND
             --Pegi
             (A.pegi >= pegiInferiorAux AND A.pegi <= pegiSuperiorAux) AND
             --Precio
@@ -1779,7 +1779,7 @@ SELECT getDescripcionEstadoVenta(18) FROM Dual;
 --WEB
 SELECT * FROM TABLE(getJuegosParaElSlider(4));
 SELECT * FROM TABLE(getTopJuegosNuevos(3));
-SELECT * FROM TABLE(getTopNuevosLanzamientos(3));
+SELECT * FROM TABLE(getTopNuevosLanzamientos(4));
 SELECT * FROM TABLE(getComprasSocio(1));
 SELECT * FROM TABLE(getVentasSocio(4));
 SELECT * FROM TABLE(getAlquileresSocio(1));

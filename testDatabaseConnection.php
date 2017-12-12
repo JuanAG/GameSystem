@@ -16,7 +16,7 @@ switch ($language){
         break;
 }
 
-echo CheckingConection;
+echo CheckingConnection;
 echo '<br/>';
 echo '<br/>';
 
@@ -28,7 +28,7 @@ if (!$conn) {
     echo $m['message'], "n";
     exit;
 } else {
-    echo ConectionSuccessful; }
+    echo ConnectionSuccessful; }
 
 // Close the Oracle connection
 oci_close($conn); ?>

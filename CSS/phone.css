@@ -1,0 +1,86 @@
+@media screen and (max-width: 800px){
+
+    #logoLink{
+        display: none;
+    }
+
+    #topHeaderLeft {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    #quickSearchResult {
+        width: 100%;
+        margin-right: 1em;
+    }
+
+    #quickSearchResults {
+        margin-right: 1em;
+    }
+
+    #topHeaderRight {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    #topHeaderRight {
+        display: inline-grid;
+    }
+
+    #topHeaderLeft > li {
+        float: none;
+        min-width: 0;
+    }
+
+    #cartLink {
+        margin: auto;
+    }
+
+    #menu {
+        display: inline-grid;
+    }
+
+    #menu li {
+        width: 100%;
+    }
+
+    #slider {
+        display: none;
+    }
+
+    #mainNewGames {
+        max-width: 100%;
+    }
+
+    #main ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    .gamesList {
+        max-width: 100%;
+    }
+
+    .gamesList li {
+        height: auto;
+        width: 100%;
+        float: none;
+    }
+
+    #finalIcons {
+        display: none;
+    }
+
+    .form {
+        max-width: 100%;
+    }
+
+    #searchParams {
+        width: 95%;
+    }
+
+    #searchResults {
+        width: 100%;
+    }
+
+}

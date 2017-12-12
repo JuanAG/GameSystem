@@ -1,13 +1,7 @@
-// Para el login
+var sliderPriceValue = document.getElementById("sliderPriceId");
+var outputPrice = document.getElementById("priceValue");
+outputPrice.innerHTML = sliderPriceValue.value;
 
-$("#accountLoginLi").mouseenter( function () {
-    $("#accountLoginLi").addClass("showLogin");
-});
-
-$("#loginbox").mouseleave( function () {
-
-    if (!$("#mainLoginForm").is(":focus")) {
-        $("#accountLoginLi").removeClass("showLogin");
-    }
-
-});
+sliderPriceValue.oninput = function() {
+  outputPrice.innerHTML = this.value;
+}

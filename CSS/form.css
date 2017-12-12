@@ -1,0 +1,94 @@
+.oneLineFlex {
+    display: inline-flex;
+}
+
+.oneLine {
+    display: inline-table;
+    width: 100%;
+    padding-left: 35%;
+}
+
+.oneLine input {
+    margin-top: 1em;
+    margin-left: 1em;
+
+}
+
+.form {
+    max-width: 50%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    background-color: #D3D3D3;
+}
+
+.form input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.form input[type=text]:focus {
+    border-color:#333;
+}
+
+.form input[type=password] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.form input[type=password]:focus {
+    border-color:#333;
+}
+
+.oneLineFlex p {
+    margin-right: 1em;
+}
+
+.oneLineFlex input{
+    background-color: #0094D5;
+    margin-top: 1.4em;
+}
+
+.form input[type=submit] {
+    padding: 5px 15px;
+    background: #0094D5;
+    color: white;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+.separatorBlack {
+    height: 1em;
+    background-color: black;
+}
+
+.separatorOrange {
+    height: 0.4em;
+    background-color: orange;
+}
+
+#formInfo {
+    text-align: center;
+}
+
+#formInfoInt {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    font-size: 1.3em;
+    color: white;
+}
+
+.formNotOK {
+    background-color: Tomato;
+}
+
+.formOK {
+    background-color: #00b300;
+}

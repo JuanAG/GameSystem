@@ -24,6 +24,14 @@ html, body{
     background-color: white;
 }
 
+.left{
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 /* HEADER */
 
 .linkHeader {
@@ -41,9 +49,9 @@ html, body{
 }
 
 #topHeaderLeft {
-    width: 68%;
+    /*width: 68%;
+    min-width: 40%; */
     float: left;
-    min-width: 40%;
 }
 
 #topHeaderLeft > li {
@@ -52,9 +60,9 @@ html, body{
 }
 
 #topHeaderRight {
-    width: 28%;
+    /*width: 28%;
+    min-width: 30%;*/
     float: right;
-    min-width: 30%;
 }
 
 #topHeaderRight > li {
@@ -67,10 +75,12 @@ html, body{
 
 #logo {
     padding: 0.2em 6em 0 2em;
+    margin-top: 0.3em;
 }
 
 #search {
     padding: 0.8em;
+    margin-top: 0.3em;
 }
 
 #searchInput {
@@ -119,32 +129,38 @@ html, body{
     background:url(/Images/Icons/loginBlue.png) white no-repeat center;
 }
 
-/* To show and hide the forms for login or cart */
-
-#mainLoginForm {
-    display: inline-block;
+#userCookie {
+    font-size: 1.2em;
+    padding-top: 1.6em;
+    margin-right: 1em;
 }
 
-.box{
-    border-radius:0px;
-    overflow:hidden;
-    white-space: nowrap;
-    transition:all .2s ease;
-    border:3px solid #8BF;
+#inputs input {
+    background: #f1f1f1;
+    padding: 6px 5px;
+    margin: 0 0 5px 0;
+    width: 238px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px #ccc inset;
 }
 
-.showLogin {
-    background-color: white;
-    width: 20em;
-    transition-delay: 0s;
-    height: 20em;
+#inputs input:focus {
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    box-shadow: 0 0 0 1px #e8c291 inset;
 }
 
-.showCart {
-    background-color: white;
-    width: 20em;
-    transition-delay: 0s;
-    height: 20em;
+#login label {
+    float: right;
+    line-height: 30px;
+}
+
+#login label input {
+    position: relative;
+    top: 2px;
+    right: 2px;
 }
 
 #cartIcon {
@@ -163,6 +179,8 @@ html, body{
     background-color: #38424e;
 }
 
+/* MENU */
+
 #menu img {
     height: 40px;
     text-align: center;
@@ -173,20 +191,104 @@ html, body{
     width: 100%;
     display: table;
     text-align: center;
+    background-color: #505050;
 }
 
-#menu li{
+#menu li {
     display: inline-block;
     float: none;
+    width: 20%;
+    margin: 0.5em 0;
 }
 
-@media screen and (max-width: 600px){
+#menu li a, a:visited {
+    color: white;
+    text-decoration: none;
+}
 
-    #menu {
-        background-color: purple;
-        display: inline-grid;
-    }
+/* TOP NEW */
 
+#mainNewGames {
+    background-color: black;
+    max-width: 65%;
+    margin: auto;
+    color: white;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 0px;
+}
+
+#gameTopTitle {
+    height: 1.3em;
+    padding-top: 0.4em;
+}
+
+#separatorTopTitle {
+    background-color: orange;
+    height: 0.5em;
+}
+
+/* TOP */
+
+.gamesList {
+    background-color: white;
+    list-style: none;
+    max-width: 65%;
+    margin: auto;
+    display: table;
+}
+
+.gamesList li {
+    width: 25%;
+    float: left;
+    padding: 0.5em;
+    margin: 0;
+    height: 28em;
+}
+
+.gamesList a {
+    text-decoration: none;
+}
+
+.gamesList p {
+    color: black;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#topPriceGame {
+    float: left;
+    color: orange;
+    margin-left: 1em;
+}
+
+.topPlatform {
+    float: right;
+    display: table;
+    margin-right: 1em;
+}
+
+.topFront {
+    width: 100%;
+    height: auto;
+}
+
+.topGameName {
+    text-align: center;
+}
+
+.reducedIcon {
+    max-height: 2em;
+    width: auto;
+    margin-top: 0.7em;
+}
+
+.topPricePlatform {
+    display: table;
+    width: 100%;
+    vertical-align: middle;
+    margin-top: 0;
 }
 
 /* FOOTER */
@@ -195,6 +297,7 @@ html, body{
     background-color: #0094d5;
     padding: 1em 0;
     font-size: 1.1em;
+    margin-top: 2em;
 }
 
 #finalIcons {
@@ -216,4 +319,91 @@ html, body{
 
 #paypalLogo {
     margin-right: 7em;
+}
+
+#gameDataBox{
+    background-color: black;
+    color: white;
+}
+
+#separatorOrange {
+    margin-bottom: 0.3em;
+}
+
+#game {
+    width: 80%;
+    margin: auto;
+    margin-top: 2em;
+}
+
+#gamePhotos {
+    display: inline-block;
+}
+
+.gamePhoto {
+    float: left;
+    width: 20%;
+}
+
+#gameDescription {
+    margin: 5px 15px;
+}
+
+#gameName {
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.2em 2em;
+}
+
+#gameSeparatorBoxes{
+    margin-top: 20em;
+}
+
+#gameFront {
+    max-width: 20%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+#gameFront img {
+    max-width: 100%;
+    height: auto;
+}
+
+#gameBuy {
+    width: 69%;
+    height: auto;
+}
+
+.bigPrice {
+    font-size: 3em;
+}
+
+.bigPlatform {
+    margin-top: 3em;
+}
+
+.oneLine {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+
+.hider {
+    display: none;
+}
+
+#buySellButtons {
+    margin-bottom: 2em;
+}
+
+.photoCart {
+    height: 10em;
+    width: auto;
+}
+
+.bigText {
+    font-size: 3em;
 }
