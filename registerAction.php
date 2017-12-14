@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 require_once 'PHP/DataBase.php';
 
 if(isset($_POST['name']) && $_POST['name'] != null) {

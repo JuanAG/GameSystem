@@ -6,8 +6,8 @@
     foreach($commands AS $command){
        $tmp = shell_exec($command);
        // tmp now holds the proper command to execute
-       //$output = shell_exec("cd ".$tmp." & StartDB");
-       $output = shell_exec("cd ".$tmp." & StopDB");
+       $output = shell_exec("cd ".$tmp." & StartDB");
+       //$output = shell_exec("cd ".$tmp." & StopDB");
        //$output = shell_exec("cd ".$tmp." & sqlplus");
 
        if(strpos($output, ">")){

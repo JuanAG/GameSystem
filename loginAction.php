@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 require_once 'PHP/DataBase.php';
 
 $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);

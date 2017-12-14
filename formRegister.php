@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 require_once 'PHP/MagicConstants.php';
 require_once 'PHP/DataBase.php';
 require 'PHP/checks.php';

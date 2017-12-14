@@ -11,6 +11,8 @@
 
 <?php
 
+error_reporting(0);
+
 require 'PHP/DataBase.php';
 
     // Do the sql thing
