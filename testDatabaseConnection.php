@@ -2,6 +2,8 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
+require_once 'MagicConstants.php';
+
 // Get the proper language for the client
 $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 switch ($language){
@@ -21,7 +23,7 @@ echo '<br/>';
 echo '<br/>';
 
 // Create connection to Oracle
-$conn = oci_connect("GAMESYSTEM", "GameSystem", 'localhost/XE');
+$conn = oci_connect(getDataBaseUser(), getDataBasePass(), getDataBaseHost());
 
 if (!$conn) {
     $m = oci_error();

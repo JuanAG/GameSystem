@@ -10,7 +10,7 @@ function getMaxQueryResults(){return 24;}
 
 function getDefaultPoints(){return 100;}
 
-function getCookieTime(){return 60;}
+function getCookieTime(){return 6000000;}
 
 // DataBase
 function getDataBaseUser(){return "GAMESYSTEM";}

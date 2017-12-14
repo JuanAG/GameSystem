@@ -33,7 +33,7 @@ switch ($language) {
         </title>
         <link rel="icon" type="image/png" href="/Images/favicon16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="/Images/favicon32.png" sizes="32x32" />
-        <link rel="stylesheet" type="text/css" href="CSS/main.css">
+        <link rel="stylesheet" type="text/css" href="CSS/main2.css">
         <link rel="stylesheet" type="text/css" href="CSS/slider.css">
         <link rel="stylesheet" type="text/css" href="CSS/autoComplete.css">
         <link rel="stylesheet" type="text/css" href="CSS/youtube.css">
@@ -66,28 +66,40 @@ switch ($language) {
             <ul id="topHeaderRight" class="">
                 <li id="cartLi" class="">
                     <a id="cartLink" class="linkHeader" href="cart.php">
-                                        <span>
-                                            <?php echo Cart; ?>
-                                        </span>
+                        <span>
+                            <?php echo Cart; ?>
+                        </span>
                         <img id="cartIcon" class="icon" src="/Images/Icons/blank.png" />
                     </a>
                 </li>
-                <li id="accountLoginLi" class="">
-                    <a id="loginLink" class="linkHeader" href="login.php">
-                                        <span>
-                                            <?php echo Login; ?>
-                                        </span>
-                        <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
-                    </a>
+                <?php if(!isset($_COOKIE['loginUser'])) {
+                    ?>
+                    <li id="accountLoginLi" class="">
+                        <a id="loginLink" class="linkHeader" href="login.php">
+                            <span>
+                                <?php echo Login; ?>
+                            </span>
+                            <img id="loginIcon" class="icon" src="/Images/Icons/blank.png" />
+                        </a>
+                    </li>
+                    <li id="accountRegisterLi" class="">
+                        <a id="registerLink" class="linkHeader" href="register.php">
+                            <span>
+                                <?php echo Register; ?>
+                            </span>
+                            <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
+                        </a>
+                    </li>
+                <?php }
+                else { ?>
+                <li>
+                    <div id="userCookie" class="">
+                        <span>
+                            <?php echo Hello." ".$_COOKIE['loginUser']; ?>
+                        </span>
+                    </div>
                 </li>
-                <li id="accountRegisterLi" class="">
-                    <a id="registerLink" class="linkHeader" href="register.php">
-                                        <span>
-                                            <?php echo Register; ?>
-                                        </span>
-                        <img id="registerIcon" class="icon" src="/Images/Icons/blank.png" />
-                    </a>
-                </li>
+                <?php }?>
             </ul>
             <div id="menusSeparator" class="fullWidth"></div>
             <ul id="menu" class="fullWidth">
@@ -149,3 +161,23 @@ switch ($language) {
         </div>
     </body>
 </html>
+
+<?php
+
+
+if(isset($_POST['quantity']) && isset($_POST['buy'])){
+    $_SESSION['Compras'][] = $_POST['id'];
+    $_SESSION['ComprasCantidad'][] = $_POST['quantity'];
+}
+
+if(isset($_POST['quantity']) && isset($_POST['sell'])){
+    $_SESSION['Ventas'][] = $_POST['id'];
+    $_SESSION['SellCantidad'][] = $_POST['quantity'];
+}
+
+if(isset($_POST['quantity']) && isset($_POST['rent'])){
+    $_SESSION['Rents'][] = $_POST['id'];
+    $_SESSION['RentsCantidad'][] = $_POST['quantity'];
+}
+
+// Only check the data received, make the jQuery Ajax call

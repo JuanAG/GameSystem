@@ -1,7 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=utf-8');
-setcookie("loginUser", null, null, '/');
+//setcookie("loginUser", null, null, '/');
 
 require 'PHP/AuxFunctions.php';
 
@@ -32,7 +32,7 @@ switch ($language) {
         </title>
         <link rel="icon" type="image/png" href="/Images/favicon16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="/Images/favicon32.png" sizes="32x32" />
-        <link rel="stylesheet" type="text/css" href="CSS/main.css">
+        <link rel="stylesheet" type="text/css" href="CSS/main2.css">
         <link rel="stylesheet" type="text/css" href="CSS/slider.css">
         <link rel="stylesheet" type="text/css" href="CSS/autoComplete.css">
         <link rel="stylesheet" type="text/css" href="CSS/searchAndCart.css">
@@ -92,9 +92,12 @@ switch ($language) {
                 <?php }
                 else { ?>
                 <li>
-                    <div id="userCookie" class="pene">
+                    <div id="userCookie" class="">
                         <span>
-                            <?php echo Hello.$_COOKIE['loginUser']; ?>
+                            <?php
+                                echo Hello." ".$_COOKIE['loginUser'];
+                            ?>
+
                         </span>
                     </div>
                 </li>

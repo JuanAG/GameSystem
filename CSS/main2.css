@@ -407,3 +407,89 @@ html, body{
 .bigText {
     font-size: 3em;
 }
+.reserve {
+    padding: 5px 15px;
+    background: #FFF380;
+    color: black;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.buy {
+    padding: 5px 15px;
+    background: #4CC417;
+    color: white;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.noStock {
+    padding: 5px 15px;
+    background: #DC381F;
+    color: white;
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    cursor: default;
+}
+
+.buttonGame {
+    margin-left: 0.2em;
+}
+
+.inputQuantity {
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    font-weight: 400;
+    margin: auto;
+    width: 3em;
+    text-align: center;
+    border: 0px;
+    margin-right: 0.2em;
+}
+
+.cartGame {
+    width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.cartPhoto {
+    width: 24%;
+    height: 100%;
+    float: left;
+}
+
+.cartData {
+    width: 74%;
+    color: black;
+    font-style: normal;
+    text-align: center;
+    padding: 0 1.5em;
+    float: right;
+}
+
+.cartPrice {
+    color: black;
+    float: left;
+}
+
+.sameLine2 {
+    display: inline-block;
+}
+
+.nextGame {
+    margin-bottom: 1em;
+}
+
+#result {
+    text-align: center;
+}

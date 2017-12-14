@@ -156,7 +156,7 @@ function getTopFutureGames($mainNewerGames){
 function getGameToShow(){
 
     // Get the id of the game
-    $id = $_GET['id'];
+    $id = $_REQUEST['id'];
 
     // Connect to the database for the data
     $gameData = getGameData1($id);
@@ -206,18 +206,30 @@ function getGameToShow(){
                 $answer = $answer."</div>";
 
                 $answer = $answer."<div id=\"buySellButtons\">";
-                    $answer = $answer."<form method=\"post\" action=\"formCart.php\">";
+                    $answer = $answer."<form class=\"oneLine\" method=\"post\" action=\"game.php\">";
                         $answer = $answer."<p>".quantity."</p>";
-                        $answer = $answer."<input type=\"text\" name=\"quantity\" value=\"1\" />";
+                        $answer = $answer."<input class=\"inputQuantity\" type=\"text\" name=\"quantity\" value=\"1\" />";
                         $answer = $answer."<input type=\"text\" class=\"hider\" name=\"id\" value=\"".$id."\" />";
                         $aux = "";
                         $class = "";
                         $rentText = "";
-                        if($stock == 0){$aux = reserve; $class = "reserve"; $rentText = reserve;}
-                        else if($stock > 0){$aux = buy; $class = "buy"; $rentText = rent;}
-                        else {$aux = noStock; $class = "noSotck"; $rentText = noStock;}
-                        $answer = $answer."<input type=\"submit\" name=\"buy\" value=\"".$aux."\" class=\"".$class."\" />";
-                        $answer = $answer."<input type=\"submit\" name=\"sell\" value=\"".sell."\" class=\"".$class."\" />";
+                        if($stock == 0){
+                            $aux = reserve;
+                            $class = "reserve buttonGame";
+                            $rentText = reserve;
+                        }
+                        else if($stock > 0){
+                            $aux = buy;
+                            $class = "buy buttonGame";
+                            $rentText = rent;
+                        }
+                        else {
+                            $aux = noStock;
+                            $class = "noStock buttonGame";
+                            $rentText = noStock;
+                        }
+                        $answer .= "<input type=\"submit\" name=\"buy\" value=\"".$aux."\" class=\"".$class."\"";if($aux==noStock){$answer .=" disabled ";} $answer .= " />";
+                        $answer = $answer."<input type=\"submit\" name=\"sell\" value=\"".sell."\" class=\"buy buttonGame\" />";
                         $answer = $answer."<input type=\"submit\" name=\"rent\" value=\"".$rentText."\" class=\"".$class."\" />";
                     $answer = $answer."</form>";
 
@@ -245,14 +257,17 @@ function getGameToShow(){
             $answer = $answer."</div>";
             $answer = $answer."<div id=\"gameDescription\">";
                 $desc = $gameData['DESCRIPCION'][0];
-                $desc = trim(substr($desc, 0, strpos($desc, "#REQUISITOS#")));
+                if(strpos($desc, "#REQUISITOS#")){
+                    $desc = substr($desc, 0, strpos($desc, "#REQUISITOS#"));
+                }
+                $desc = trim($desc);
                 $answer = $answer."<div>".$desc."</div>";
             $answer = $answer."</div>";
 
             $answer = $answer."<div class=\"separatorOrange\"></div>";
 
         $answer = $answer."</div>";
-    $answer = $answer."</div>";
+        $answer = $answer."</div>";
 
     return $answer."</div>";
 }
@@ -269,7 +284,7 @@ function getRegisterForm(){
         $answer = $answer."<div class=\"oneLine\"><p class=\"formText left\">".formLogin."</p>"."<input id=\"login\" class=\"left\" type=\"text\" name=\"login\" value=\"john\"></div>";
         $answer = $answer."<div class=\"oneLine\"><p class=\"formText left\">".formPass."</p>"."<input id=\"pass\" class=\"left\" type=\"password\" name=\"pass\" value=\"pass\"></div><br/>";
         $answer = $answer."<div class=\"oneLineFlex\"><p class=\"formText left\">".formRemenberMe."</p>"."<input id=\"remenberMe\" class=\"right\" type=\"checkbox\" name=\"remenberMe\" checked></div>";
-        $answer = $answer."<br/><input id=\"submit\" type=\"submit\" name=\"submit\" value=\"".formLogin."\">";
+        $answer = $answer."<br/><input id=\"submit\" type=\"submit\" name=\"submit\" value=\"".Register."\">";
         $answer = $answer."<div class=\"separatorOrange\"></div><div class=\"separatorBlack\"></div>";
     return $answer."</form>";
 }
@@ -282,27 +297,44 @@ function getCartForm(){
             $count = count($_SESSION['Compras']);
             $answer = $answer."<p class=\"bigText\">".buy."</p>";
         }
+        $totalTotal = 0;
         for($i = 0; $i < $count; $i++){
             $id = $_SESSION['Compras'][$i];
             $answer = $answer."<div class=\"transactionItem\">";
                 $gameData = getGameData1($id);
                 $price = getGamePrice($id);
                 $price = $price['PRICE'][0];
-                    if($gameData['FRONT'][0] == 'Y'){
-                        $answer = $answer."<img class=\"photoCart\" src=\"/Images/Games/".$id."/big/front.jpg\">";
-                    }
-                    $answer = $answer."<div id=\"gameName\">".$gameData['NOMBRE'][0]."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".quantity."</div>";
-                        $answer = $answer."<div id=\"cantidad\">".$_SESSION['ComprasCantidad'][$i]."</div>";
-                    $answer = $answer."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".total."</div>";
-                        $aux = ($_SESSION['ComprasCantidad'][$i]);
-                        $aux = floatval($aux)*floatval($price);
-                        $answer = $answer."<div id=\"total\">".$aux."</div>";
-                    $answer = $answer."<br /></div>";
+                    $answer = $answer."<a id=\"photo".$i."\" class=\"cartItem\" href=\"game.php?id=".$id."\">";
+                        $answer = $answer."<div class=\"cartGame\">";
+                            $answer = $answer."<div class=\"cartPhoto\" class=\left\">";
+                                $answer = $answer."<img class=\"quickSearchFront\" src=\"/Images/Games/".$id."/small/front.jpg\">";
+                            $answer = $answer."</div>";
+                            $answer = $answer."<div class=\"cartData\" class=\"right\">";
+                                $answer = $answer."<p class=\"quickSearchGameName\">".$gameData['NOMBRE'][0]."</p>";
 
+                                $answer = $answer."<div class=\"quickSearchPricePlatform\">";
+                                    // Price
+                                    $answer = $answer."<p class=\"cartPrice\">".$price." &euro;</p>";
+                                    // Platform
+                                    $answer = $answer."<div class=\"quickSearchPlatform\">";
+                                        $answer = $answer."<p class=\"quickSearchPlatformGame\">".$gameData['PLATAFORMA'][0]."</p>";
+                                        $iconPlatform = "";
+                                        switch ($gameData['PLATAFORMA'][0]){
+                                            case 'Xbox': $iconPlatform = "/Images/Icons/xboxIcon.png"; break;
+                                            case 'PS4': $iconPlatform = "/Images/Icons/psIcon.png"; break;
+                                            case '3DS': $iconPlatform = "/Images/Icons/3dsIcon.png"; break;
+                                            case 'PC': $iconPlatform = "/Images/Icons/pcIcon.png"; break;
+                                        }
+                                        $answer = $answer."<img class=\"reducedIcon\" src=\"".$iconPlatform."\">";
+                                    $answer = $answer."</div>";
+                                $answer = $answer."</div>";
+                            $answer = $answer."</div>";
+                        $answer = $answer."</div>";
+                    $answer = $answer."</a>";
+                    $answer = $answer."<div class=\"sameLine2 nextGame\">";
+                        $answer = $answer."<div class=\"left\" >".quantity."&nbsp;"."</div>";
+                        $answer = $answer."<div id=\"cantidad\" class=\"right\">".$_SESSION['ComprasCantidad'][$i]."</div>";
+                    $answer = $answer."</div>";
             $answer = $answer."</div>";
         }
 
@@ -317,21 +349,37 @@ function getCartForm(){
                 $gameData = getGameData1($id);
                 $price = getGamePrice($id);
                 $price = $price['PRICE'][0];
-                    if($gameData['FRONT'][0] == 'Y'){
-                        $answer = $answer."<img class=\"photoCart\" src=\"/Images/Games/".$id."/big/front.jpg\">";
-                    }
-                    $answer = $answer."<div id=\"gameName\">".$gameData['NOMBRE'][0]."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".quantity."</div>";
-                        $answer = $answer."<div id=\"cantidad\">".$_SESSION['SellCantidad'][$i]."</div>";
-                    $answer = $answer."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".total."</div>";
-                        $aux = ($_SESSION['SellCantidad'][$i]);
-                        $aux = floatval($aux)*floatval($price);
-                        $answer = $answer."<div id=\"total\">".$aux."</div>";
-                    $answer = $answer."<br /></div>";
+                    $answer = $answer."<a id=\"photo".$i."\" class=\"cartItem\" href=\"game.php?id=".$id."\">";
+                        $answer = $answer."<div class=\"cartGame\">";
+                            $answer = $answer."<div class=\"cartPhoto\" class=\left\">";
+                                $answer = $answer."<img class=\"quickSearchFront\" src=\"/Images/Games/".$id."/small/front.jpg\">";
+                            $answer = $answer."</div>";
+                            $answer = $answer."<div class=\"cartData\" class=\"right\">";
+                                $answer = $answer."<p class=\"quickSearchGameName\">".$gameData['NOMBRE'][0]."</p>";
 
+                                $answer = $answer."<div class=\"quickSearchPricePlatform\">";
+                                    // Price
+                                    $answer = $answer."<p class=\"cartPrice\">".$price." &euro;</p>";
+                                    // Platform
+                                    $answer = $answer."<div class=\"quickSearchPlatform\">";
+                                        $answer = $answer."<p class=\"quickSearchPlatformGame\">".$gameData['PLATAFORMA'][0]."</p>";
+                                        $iconPlatform = "";
+                                        switch ($gameData['PLATAFORMA'][0]){
+                                            case 'Xbox': $iconPlatform = "/Images/Icons/xboxIcon.png"; break;
+                                            case 'PS4': $iconPlatform = "/Images/Icons/psIcon.png"; break;
+                                            case '3DS': $iconPlatform = "/Images/Icons/3dsIcon.png"; break;
+                                            case 'PC': $iconPlatform = "/Images/Icons/pcIcon.png"; break;
+                                        }
+                                        $answer = $answer."<img class=\"reducedIcon\" src=\"".$iconPlatform."\">";
+                                    $answer = $answer."</div>";
+                                $answer = $answer."</div>";
+                            $answer = $answer."</div>";
+                        $answer = $answer."</div>";
+                    $answer = $answer."</a>";
+                    $answer = $answer."<div class=\"sameLine2 nextGame\">";
+                        $answer = $answer."<div class=\"left\" >".quantity."&nbsp;"."</div>";
+                        $answer = $answer."<div id=\"cantidad\" class=\"right\">".$_SESSION['SellCantidad'][$i]."</div>";
+                    $answer = $answer."</div>";
             $answer = $answer."</div>";
         }
 
@@ -346,21 +394,37 @@ function getCartForm(){
                 $gameData = getGameData1($id);
                 $price = getGamePrice($id);
                 $price = $price['PRICE'][0];
-                    if($gameData['FRONT'][0] == 'Y'){
-                        $answer = $answer."<img class=\"photoCart\" src=\"/Images/Games/".$id."/big/front.jpg\">";
-                    }
-                    $answer = $answer."<div id=\"gameName\">".$gameData['NOMBRE'][0]."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".quantity."</div>";
-                        $answer = $answer."<div id=\"cantidad\">".$_SESSION['RentsCantidad'][$i]."</div>";
-                    $answer = $answer."</div>";
-                    $answer = $answer."<div class=\"sameLine\">";
-                        $answer = $answer."<div>".total."</div>";
-                        $aux = ($_SESSION['RentsCantidad'][$i]);
-                        $aux = floatval($aux)*floatval($price);
-                        $answer = $answer."<div id=\"total\">".$aux."</div>";
-                    $answer = $answer."<br /></div>";
+                    $answer = $answer."<a id=\"photo".$i."\" class=\"cartItem\" href=\"game.php?id=".$id."\">";
+                        $answer = $answer."<div class=\"cartGame\">";
+                            $answer = $answer."<div class=\"cartPhoto\" class=\left\">";
+                                $answer = $answer."<img class=\"quickSearchFront\" src=\"/Images/Games/".$id."/small/front.jpg\">";
+                            $answer = $answer."</div>";
+                            $answer = $answer."<div class=\"cartData\" class=\"right\">";
+                                $answer = $answer."<p class=\"quickSearchGameName\">".$gameData['NOMBRE'][0]."</p>";
 
+                                $answer = $answer."<div class=\"quickSearchPricePlatform\">";
+                                    // Price
+                                    $answer = $answer."<p class=\"cartPrice\">".$price." &euro;</p>";
+                                    // Platform
+                                    $answer = $answer."<div class=\"quickSearchPlatform\">";
+                                        $answer = $answer."<p class=\"quickSearchPlatformGame\">".$gameData['PLATAFORMA'][0]."</p>";
+                                        $iconPlatform = "";
+                                        switch ($gameData['PLATAFORMA'][0]){
+                                            case 'Xbox': $iconPlatform = "/Images/Icons/xboxIcon.png"; break;
+                                            case 'PS4': $iconPlatform = "/Images/Icons/psIcon.png"; break;
+                                            case '3DS': $iconPlatform = "/Images/Icons/3dsIcon.png"; break;
+                                            case 'PC': $iconPlatform = "/Images/Icons/pcIcon.png"; break;
+                                        }
+                                        $answer = $answer."<img class=\"reducedIcon\" src=\"".$iconPlatform."\">";
+                                    $answer = $answer."</div>";
+                                $answer = $answer."</div>";
+                            $answer = $answer."</div>";
+                        $answer = $answer."</div>";
+                    $answer = $answer."</a>";
+                    $answer = $answer."<div class=\"sameLine2 nextGame\">";
+                        $answer = $answer."<div class=\"left\" >".quantity."&nbsp;"."</div>";
+                        $answer = $answer."<div id=\"cantidad\" class=\"right\">".$_SESSION['RentsCantidad'][$i]."</div>";
+                    $answer = $answer."</div>";
             $answer = $answer."</div>";
         }
 
@@ -369,13 +433,88 @@ function getCartForm(){
     return $answer."</form>";
 }
 
+function setTranactions(){
+    $answer = "<div id=\"result\">";
+    $name = null;
+    if(isset($_COOKIE['loginUser'])){
+        $name = $_COOKIE['loginUser'];
+    }
+    if($name != null) {
+        $idUser = getDataFromDatabase("SELECT idLogin FROM Login WHERE Usuario = '" . $_COOKIE['loginUser'] . "'");
+        $idUser = $idUser['IDLOGIN'][0];
+        $count = 0;
+        $transactionsCorrect = 0;
+        if (isset($_SESSION['Compras'])) {
+            $count = count($_SESSION['Compras']);
+            $answer = $answer . "<div>Comprados:";
+        }
+
+        for ($i = 0; $i < $count; $i++) {
+            $id = $_SESSION['Compras'][$i];
+
+            $price = getGamePrice($id);
+            $price = $price['PRICE'][0];
+            $cantidad = $_SESSION['ComprasCantidad'][$i];
+
+            $transactionsCorrect += setTransactions($idUser, $id, $price, $cantidad, 1);
+        }
+        if (isset($_SESSION['Compras'])) {
+            $answer = $answer . " " . $transactionsCorrect . "</div>";
+        }
+
+        $count = 0;
+        $transactionsCorrect = 0;
+        if (isset($_SESSION['Ventas'])) {
+            $count = count($_SESSION['Ventas']);
+            $answer = $answer . "<div>Vendidos:";
+        }
+        for ($i = 0; $i < $count; $i++) {
+            $id = $_SESSION['Ventas'][$i];
+
+            $price = getGamePrice($id);
+            $price = $price['PRICE'][0];
+            $cantidad = $_SESSION['SellCantidad'][$i];
+
+            $transactionsCorrect += setTransactions($idUser, $id, $price, $cantidad, 2);
+        }
+        if (isset($_SESSION['Ventas'])) {
+            $answer = $answer . " " . $transactionsCorrect . "</div>";
+        }
+
+        $count = 0;
+        $transactionsCorrect = 0;
+        if (isset($_SESSION['Rents'])) {
+            $count = count($_SESSION['Rents']);
+            $answer = $answer . "<div>Alquilados:";
+        }
+        for ($i = 0; $i < $count; $i++) {
+            $id = $_SESSION['Rents'][$i];
+
+            $price = getGamePrice($id);
+            $price = $price['PRICE'][0];
+            $cantidad = $_SESSION['RentsCantidad'][$i];
+
+            $transactionsCorrect += setTransactions($idUser, $id, $price, $cantidad, 3);
+        }
+        if (isset($_SESSION['Rents'])) {
+            $answer = $answer . " " . $transactionsCorrect . "</div>";
+        }
+        // Delete the cart after the chekcout
+        session_destroy();
+    }
+    else{
+        $answer = $answer."Tiene que logearse para poder comprar";
+    }
+    return $answer."</div>";
+}
+
 function getLoginForm(){
     $answer = "<form id=\"registerForm\" name=\"register\" class=\"form\" method=\"post\" action=\"login.php\">";
         $answer = $answer."<div class=\"separatorBlack\"></div><div class=\"separatorOrange\"></div>";
         $answer = $answer."<div class=\"oneLine\"><p class=\"formText left\">".formLogin."</p>"."<input id=\"login\" class=\"left\" type=\"text\" name=\"login\" value=\"john\"></div>";
         $answer = $answer."<div class=\"oneLine\"><p class=\"formText left\">".formPass."</p>"."<input id=\"pass\" class=\"left\" type=\"password\" name=\"pass\" value=\"pass\"></div><br/>";
         $answer = $answer."<div class=\"oneLineFlex\"><p class=\"formText left\">".formRemenberMe."</p>"."<input id=\"remenberMe\" class=\"right\" type=\"checkbox\" name=\"remenberMe\" checked></div>";
-        $answer = $answer."<br/><input id=\"submit\" type=\"submit\" name=\"submit\" value=\"".formRegister."\">";
+        $answer = $answer."<br/><input id=\"submit\" type=\"submit\" name=\"submit\" value=\"".Login."\">";
         $answer = $answer."<div class=\"separatorOrange\"></div><div class=\"separatorBlack\"></div>";
     return $answer."</form>";
 }
