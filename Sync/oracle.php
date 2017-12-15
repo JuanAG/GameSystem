@@ -21,7 +21,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>Updating oracle conifg</title>
+    <title>Updating oracle configuration</title>
 </head>
 <body>
 <div>
