@@ -1195,26 +1195,26 @@ BEGIN
                     SELECT *
                     FROM Facturas F 
                     WHERE F.idSocio = 0
-                    ORDER BY F.FechaEntrega DESC
+                    ORDER BY F.FechaEntrega DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-                
+
         --Calculo el precio de ese juego
         precio := getPrecio(idJuegoAux);
-                
-        PIPE ROW( JuegoMostrarFotoPrecioObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma) );   
-    
+
+        PIPE ROW( JuegoMostrarFotoPrecioObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getTopJuegosNuevos;
 /
 
@@ -1228,7 +1228,7 @@ BEGIN
 
     FOR X IN 1 .. cantidadJuegos
     LOOP
-        
+
         --Obtenemos el idJuego de los mas nuevos por orden, de uno en uno
         SELECT idJuego INTO idJuegoAux
         FROM (
@@ -1237,26 +1237,26 @@ BEGIN
                     SELECT *
                     FROM Facturas F INNER JOIN PedidosProveedor PP ON F.idFactura = PP.idCompraFactura
                     WHERE F.idSocio = 0 AND PP.esEntregado = 'N'
-                    ORDER BY F.FechaPedido DESC
+                    ORDER BY F.FechaPedido DESC, F.idJuego ASC
                     )
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-                
+
         --Calculo el precio de ese juego
         precio := getPrecio(idJuegoAux);
-                
-        PIPE ROW( JuegoMostrarFotoPrecioObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma) );   
-    
+
+        PIPE ROW( JuegoMostrarFotoPrecioObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getTopNuevosLanzamientos;
 /
 
@@ -1275,14 +1275,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeCompras
     FROM Compras C INNER JOIN Facturas F ON C.idFacturaCompra = F.idFactura
     WHERE F.idSocio = idSocio_;
-        
+
     IF (cantidadDeCompras = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDeCompras
     LOOP
-        
+
         --Obtenemos el idFactura por orden, de uno en uno
         SELECT idFactura INTO idFacturaAux
         FROM (
@@ -1290,36 +1290,36 @@ BEGIN
               FROM (
                     SELECT F.*, C.*
                     FROM Compras C INNER JOIN Facturas F ON C.idFacturaCompra = F.idFactura
-                    WHERE F.idSocio = idSocio_  
+                    WHERE F.idSocio = idSocio_
                     )
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         SELECT F.idJuego INTO idJuegoAux
         FROM Facturas F
         WHERE F.idFactura = idFacturaAux;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getPrecioPagadoPorUsuario(idFacturaAux);
-        
+
         --Obtengo la cantidad de juegos comprados
         cantidadAux := getCantidadCompradaFactura(idFacturaAux);
-        
+
         --Obtengo si el juego esta pagado
         pagadoSoN := getPagado(idFacturaAux);
-                               
-        PIPE ROW( JuegoCompradoObj(idJuegoAux, TRIM(tablaJuego.Nombre), caratula, precio, tablaJuego.plataforma, cantidadAux, pagadoSoN) );   
-    
+
+        PIPE ROW( JuegoCompradoObj(idJuegoAux, TRIM(tablaJuego.Nombre), caratula, precio, tablaJuego.plataforma, cantidadAux, pagadoSoN) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getComprasSocio;
 /
 
@@ -1338,14 +1338,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeVentas
     FROM Ventas V INNER JOIN Facturas F ON V.idFacturaCompra = F.idFactura
     WHERE F.idSocio = idSocio_;
-        
+
     IF (cantidadDeVentas = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDeVentas
     LOOP
-        
+
         --Obtenemos el idJuego de los mas vendidos por orden, de uno en uno
         SELECT idFactura INTO idFacturaAux
         FROM (
@@ -1353,36 +1353,36 @@ BEGIN
               FROM (
                     SELECT F.*, V.*
                     FROM Ventas V INNER JOIN Facturas F ON V.idFacturaCompra = F.idFactura
-                    WHERE F.idSocio = idSocio_  
+                    WHERE F.idSocio = idSocio_
                     )
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         SELECT F.idJuego INTO idJuegoAux
         FROM Facturas F
         WHERE F.idFactura = idFacturaAux;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getPrecioPagadoPorUsuario(idFacturaAux);
-        
+
         --Obtengo la cantidad de juegos vendidos
         cantidadAux := getCantidadCompradaFactura(idFacturaAux);
-        
+
         --Obtengo la descripcion
         descripcion := getDescripcionEstadoVenta(idFacturaAux);
-                               
-        PIPE ROW( JuegoVendidoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, descripcion) );   
-    
+
+        PIPE ROW( JuegoVendidoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, descripcion) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getVentasSocio;
 /
 
@@ -1401,14 +1401,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeAlquileres
     FROM Alquileres A INNER JOIN Facturas F ON A.idFacturaCompra = F.idFactura
     WHERE F.idSocio = idSocio_;
-        
+
     IF (cantidadDeAlquileres = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDeAlquileres
     LOOP
-        
+
         --Obtenemos el idJuego de los mas vendidos por orden, de uno en uno
         SELECT idFactura INTO idFacturaAux
         FROM (
@@ -1416,36 +1416,36 @@ BEGIN
               FROM (
                     SELECT F.*, A.*
                     FROM Alquileres A INNER JOIN Facturas F ON A.idFacturaCompra = F.idFactura
-                    WHERE F.idSocio = idSocio_ 
+                    WHERE F.idSocio = idSocio_
                     )
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         SELECT F.idJuego INTO idJuegoAux
         FROM Facturas F
         WHERE F.idFactura = idFacturaAux;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getCalcularPrecioAlquiler(idFacturaAux);
-        
+
         --Obtengo la cantidad de juegos alquilados
         cantidadAux := getCantidadCompradaFactura(idFacturaAux);
-        
+
         --Obtengo el tiempo de alquiler
         tiempoDeAlquiler := TO_CHAR(getTiempoAlquiler(idFacturaAux));
-                               
-        PIPE ROW( JuegoAlquiladoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, tiempoDeAlquiler) );   
-    
+
+        PIPE ROW( JuegoAlquiladoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, tiempoDeAlquiler) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getAlquileresSocio;
 /
 
@@ -1464,14 +1464,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDePagosPendiente
     FROM Compras C INNER JOIN Facturas F ON C.idFacturaCompra = F.idFactura
     WHERE F.idSocio = idSocio_ AND C.esPagado = 'N';
-        
+
     IF (cantidadDePagosPendiente = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDePagosPendiente
     LOOP
-        
+
         --Obtenemos el idFactura por orden, de uno en uno
         SELECT idFactura INTO idFacturaAux
         FROM (
@@ -1484,35 +1484,35 @@ BEGIN
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-            
+
         SELECT F.idJuego INTO idJuegoAux
         FROM Facturas F
         WHERE F.idFactura = idFacturaAux;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getPrecioPagadoPorUsuario(idFacturaAux);
-        
+
         --Obtengo la cantidad de juegos comprados
         cantidadAux := getCantidadCompradaFactura(idFacturaAux);
-        
+
         --Obtengo si el juego esta pagado
         pagadoSoN := getPagado(idFacturaAux);
-                               
-        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, pagadoSoN) );   
-    
+
+        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, pagadoSoN) );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getFactura;
 /
 
-CREATE OR REPLACE FUNCTION getAutentificarLogin(usuario_ IN VARCHAR, pass_ IN VARCHAR) RETURN VARCHAR AS 
+CREATE OR REPLACE FUNCTION getAutentificarLogin(usuario_ IN VARCHAR, pass_ IN VARCHAR) RETURN VARCHAR AS
     respuesta VARCHAR(120) := '';
     cantidad INT;
 BEGIN
@@ -1523,21 +1523,21 @@ BEGIN
     FROM Login L
     WHERE L.Usuario = usuario_ AND L.Pass = pass_;
     IF cantidad > 0 THEN
-    
-          SELECT L.idLogin INTO cantidad
+
+          SELECT COUNT(L.idLogin) INTO cantidad
           FROM Login L
           WHERE L.Usuario = usuario_ AND L.Pass = pass_;
-          
+
           respuesta := usuario_ || TO_CHAR(cantidad);
-                    
+
     END IF;
-    
+
     RETURN respuesta;
-    
+
 END getAutentificarLogin;
 /
 
-CREATE OR REPLACE FUNCTION getCantidadJuegosVendidos(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN INT AS 
+CREATE OR REPLACE FUNCTION getCantidadJuegosVendidos(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN INT AS
     respuesta INT;
     cantidad INT;
 BEGIN
@@ -1548,7 +1548,7 @@ BEGIN
     FROM Compras C INNER JOIN Facturas F ON F.idFactura = C.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0;
     IF cantidad > 0 THEN
-    
+
           SELECT cantidad INTO respuesta
           FROM (
                 SELECT F.idJuego, SUM(F.cantidad) cantidad
@@ -1556,15 +1556,15 @@ BEGIN
                 WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0
                 GROUP BY F.idJuego
               );
-              
+
     END IF;
-    
+
     RETURN respuesta;
-    
+
 END getCantidadJuegosVendidos;
 /
 
-CREATE OR REPLACE FUNCTION getPrecioMedioPagadoJuego(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS 
+CREATE OR REPLACE FUNCTION getPrecioMedioPagadoJuego(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS
     respuesta FLOAT := 0.0;
     cantidad INT;
 BEGIN
@@ -1575,22 +1575,22 @@ BEGIN
     FROM Compras C INNER JOIN Facturas F ON F.idFactura = C.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0;
     IF cantidad > 0 THEN
-              
+
           SELECT SUM(totalFila) INTO respuesta
           FROM
                 (
                 SELECT F.cantidad * F.precio totalFila
                 FROM Facturas F INNER JOIN Compras C ON F.idFactura = C.idFacturaCompra
                 WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0
-                );                    
+                );
     END IF;
-    
+
     RETURN ROUND(respuesta/cantidad, 2);
-    
+
 END getPrecioMedioPagadoJuego;
 /
 
-CREATE OR REPLACE FUNCTION getDineroInvertidoEnTenerStock(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS 
+CREATE OR REPLACE FUNCTION getDineroInvertidoEnTenerStock(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS
     respuesta FLOAT := 0.0;
     cantidad INT;
 BEGIN
@@ -1601,7 +1601,7 @@ BEGIN
     FROM Facturas F
     WHERE F.idSocio = 0 AND F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
     IF cantidad > 0 THEN
-              
+
           SELECT SUM(totalFila) INTO respuesta
           FROM
                 (
@@ -1609,15 +1609,15 @@ BEGIN
                 FROM Facturas F
                 WHERE F.idSocio = 0 AND F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta
                 );
-                
+
     END IF;
-    
+
     RETURN ROUND(respuesta, 2);
-    
+
 END getDineroInvertidoEnTenerStock;
 /
 
-CREATE OR REPLACE FUNCTION getBeneficiosPorVentas(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS 
+CREATE OR REPLACE FUNCTION getBeneficiosPorVentas(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS
     respuesta FLOAT := 0.0;
     cantidad INT;
 BEGIN
@@ -1629,7 +1629,7 @@ BEGIN
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
 
     IF cantidad > 0 THEN
-              
+
           SELECT SUM(totalFila) INTO respuesta
           FROM
                 (
@@ -1637,11 +1637,11 @@ BEGIN
                 FROM Facturas F INNER JOIN Compras C ON F.idFactura = C.idFacturaCompra
                 WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta
                 );
-                
+
     END IF;
-    
+
     RETURN ROUND(respuesta, 2);
-    
+
 END getBeneficiosPorVentas;
 /
 
@@ -1658,14 +1658,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeCompras
     FROM Compras C INNER JOIN Facturas F ON F.idFactura = C.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
-        
+
     IF (cantidadDeCompras = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDeCompras
     LOOP
-        
+
         --Obtenemos el idJuego por orden, de uno en uno
         SELECT idJuego INTO idJuegoAux
         FROM (
@@ -1680,28 +1680,28 @@ BEGIN
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getPrecioMedioPagadoJuego(idJuegoAux, fechaDesde, fechaHasta);
-        
+
         --Obtengo la cantidad de juegos comprados en la fecha dada
         cantidadAux := getCantidadJuegosVendidos(idJuegoAux, fechaDesde, fechaHasta);
-                               
-        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, 'N') );   
-    
+
+        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, 'N') );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getComprasTienda;
 /
 
-CREATE OR REPLACE FUNCTION getCantidadJuegosComprados(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN INT AS 
+CREATE OR REPLACE FUNCTION getCantidadJuegosComprados(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN INT AS
     respuesta INT;
     cantidad INT;
 BEGIN
@@ -1712,7 +1712,7 @@ BEGIN
     FROM Ventas V INNER JOIN Facturas F ON F.idFactura = V.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0;
     IF cantidad > 0 THEN
-    
+
           SELECT cantidad INTO respuesta
           FROM (
                 SELECT F.idJuego, SUM(F.cantidad) cantidad
@@ -1720,15 +1720,15 @@ BEGIN
                 WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0
                 GROUP BY F.idJuego
           );
-                    
+
     END IF;
-    
+
     RETURN respuesta;
-    
+
 END getCantidadJuegosComprados;
 /
 
-CREATE OR REPLACE FUNCTION getPrecioMedioVendidoJuego(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS 
+CREATE OR REPLACE FUNCTION getPrecioMedioVendidoJuego(idJuego_ IN INT, fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS
     respuesta FLOAT := 0.0;
     cantidad INT;
 BEGIN
@@ -1738,9 +1738,9 @@ BEGIN
     SELECT COUNT(*) INTO cantidad
     FROM Ventas V INNER JOIN Facturas F ON F.idFactura = V.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0;
-    
+
     IF cantidad > 0 THEN
-        
+
           SELECT SUM(totalFila) INTO respuesta
           FROM
                 (
@@ -1748,11 +1748,11 @@ BEGIN
                 FROM Facturas F INNER JOIN Ventas V ON F.idFactura = V.idFacturaCompra
                 WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta AND F.idJuego = idJuego_ AND F.idSocio <> 0
                 );
-                    
+
     END IF;
-    
+
     RETURN ROUND(respuesta/cantidad, 2);
-    
+
 END getPrecioMedioVendidoJuego;
 /
 
@@ -1769,14 +1769,14 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeVentas
     FROM Ventas V INNER JOIN Facturas F ON F.idFactura = V.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
-        
+
     IF (cantidadDeVentas = 0) THEN
         RETURN;
     END IF;
 
     FOR X IN 1 .. cantidadDeVentas
     LOOP
-        
+
         --Obtenemos el idJuego por orden, de uno en uno
         SELECT idJuego INTO idJuegoAux
         FROM (
@@ -1791,24 +1791,24 @@ BEGIN
               WHERE ROWNUM <= X
               )
         WHERE rNum >= X;
-          
+
         tablaJuego := getRowTypeTablaJuegos(idJuegoAux);
-                  
+
         --Obtengo si tiene front
         caratula := getTieneFront(idJuegoAux);
-        
-        --Obtengo el precio 
+
+        --Obtengo el precio
         precio := getPrecioMedioVendidoJuego(idJuegoAux, fechaDesde, fechaHasta)/getEquivalenciaPuntosEuros;
-        
+
         --Obtengo la cantidad de juegos que he comprado en la fecha dada a otros usuarios
         cantidadAux := getCantidadJuegosComprados(idJuegoAux, fechaDesde, fechaHasta);
-                               
-        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, 'N') );   
-    
+
+        PIPE ROW( JuegoCompradoObj(idJuegoAux, tablaJuego.Nombre, caratula, precio, tablaJuego.plataforma, cantidadAux, 'N') );
+
     END LOOP;
-    
+
     RETURN;
-    
+
 END getVentasSociosATienda;
 /
 
@@ -1821,9 +1821,9 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeRecompras
     FROM Ventas V INNER JOIN Facturas F ON F.idFactura = V.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
-        
+
     IF (cantidadDeRecompras > 0) THEN
-    
+
         SELECT SUM(totalFila) INTO respuesta
         FROM
               (
@@ -1831,11 +1831,11 @@ BEGIN
               FROM Ventas V INNER JOIN Facturas F ON F.idFactura = V.idFacturaCompra
               WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta
               );
-              
+
     END IF;
-    
+
     RETURN ROUND(respuesta, 2);
-    
+
 END getPerdidasPorRecompras;
 /
 
@@ -1848,9 +1848,9 @@ BEGIN
     SELECT COUNT(*) INTO cantidadDeAlquileres
     FROM Alquileres A INNER JOIN Facturas F ON F.idFactura = A.idFacturaCompra
     WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta;
-        
+
     IF (cantidadDeAlquileres > 0) THEN
-    
+
         SELECT SUM(totalFila) INTO respuesta
         FROM
               (
@@ -1858,34 +1858,34 @@ BEGIN
               FROM Alquileres A INNER JOIN Facturas F ON F.idFactura = A.idFacturaCompra
               WHERE F.FechaPedido >= fechaDesde AND F.FechaEntrega <= fechaHasta
               );
-              
+
     END IF;
-    
+
     RETURN ROUND(respuesta, 2);
-    
+
 END getIngresosPorAlquiler;
 /
 
-CREATE OR REPLACE FUNCTION getBeneficios(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS 
+CREATE OR REPLACE FUNCTION getBeneficios(fechaDesde IN DATE, fechaHasta IN DATE) RETURN FLOAT AS
     respuesta FLOAT := 0.0;
     cantidad INT;
 BEGIN
     --Devuelve los beneficios totales que hemos tenido contando las ventas, los alquileres, las perdidas por recomprar y el gasto por stock
-    
+
     --Sumo los ingresos por las ventas a usuarios
      respuesta := respuesta + getBeneficiosPorVentas(fechaDesde, fechaHasta);
-    
+
     --Sumo los ingresos por alquiler
     respuesta := respuesta + getIngresosPorAlquiler(fechaDesde, fechaHasta);
-    
+
     --Resto lo que ha costado tener stock
     respuesta := respuesta - getDineroInvertidoEnTenerStock(fechaDesde, fechaHasta);
-    
+
     --Resto lo que me han costado las recompras a los usuarios
     respuesta := respuesta - getPerdidasPorRecompras(fechaDesde, fechaHasta);
-    
+
     RETURN ROUND(respuesta, 2);
-    
+
 END getBeneficios;
 /
 
@@ -1896,26 +1896,26 @@ BEGIN
     --Devuelve el stock que hay de ese juego para mostrar en la compra, positivo es que hay, 0 se permite reservar y -1 es agotado
 
     IF(respuesta <= 0) THEN
-        
+
         --Veo si tengo algun pedido pendiente de que me llegue
         SELECT COUNT(*) INTO estaPendienteDeLlegar
         FROM Facturas F
         WHERE idSocio = 0 AND F.fechaEntrega = getFechaNoDevuelto AND F.idJuego = idJuego_;
-        
+
         IF estaPendienteDeLlegar >= 1 THEN
-        
+
             respuesta := 0;
-          
+
         ELSE
-        
+
             respuesta := -1;
-            
+
         END IF;
-    
+
     END IF;
-    
+
     RETURN respuesta;
-    
+
 END getStockJuego;
 /
 
@@ -1939,70 +1939,18 @@ CREATE OR REPLACE FUNCTION getBusquedaPorNombre(nombre_ IN VARCHAR) RETURN Juego
     resultado JuegoBusquedaTabla;
 BEGIN
     --Busco solo segun el nombre del juego
-     
+
     --Realizo la consulta y la guardo en la tabla
-    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)   
+    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
     BULK COLLECT INTO resultado
-    FROM 
+    FROM
         (
           SELECT  J.idJuego, J.nombre, J.plataforma, J.genero, J.pegi, J.esEdicionColeccionista coleccionista, J.esSeminuevo seminuevo,
                   J.esRetro retro, J.esDigital digital, R2.front, R2.precio *getMargenBeneficios precio, getStockJuego(R2.idJuego) stock
-          FROM Juegos J INNER JOIN (  
+          FROM Juegos J INNER JOIN (
                                         --Obtener ademas el front y filtrar por el nombre
-                                        SELECT R.idJuego, R.fechaPedido, R.precio, M.front 
-                                        FROM (
-                                              --Obtener el ultimo precio de cada juego
-                                              SELECT DISTINCT F.idJuego, F.fechaPedido, F.Precio
-                                              FROM Facturas F
-                                              WHERE F.fechaPedido = (
-                                                                        --Obtener la ultima fecha de cada juego comprado
-                                                                        SELECT MAX(F_.fechaPedido)
-                                                                        FROM Facturas F_
-                                                                        WHERE F_.idJuego = F.idJuego AND F_.idSocio = 0
-                                                                    )
-                                                                    AND F.idSocio = 0                                          
-                                              ORDER BY F.fechaPedido DESC
-                                              ) 
-                                              R INNER JOIN Multimedia M ON M.idMultimedia = R.idJuego
-                                                INNER JOIN Juegos J ON J.idJuego = M.idMultimedia
-                                        WHERE J.nombre LIKE '%' || UPPER(nombre_) || '%'
-                                      )
-                                      R2 ON J.idJuego = R2.idJuego
-          ) A;
-   
-   RETURN resultado;
-   
-END getBusquedaPorNombre;
-/
-
-CREATE OR REPLACE FUNCTION getBusquedaPorPlataforma(plataforma_ IN VARCHAR) RETURN JuegoBusquedaTabla AS
-    tresDS CHAR(1);
-    pc CHAR(1);
-    ps4 CHAR(1);
-    xbox CHAR(1);
-    resultado JuegoBusquedaTabla;
-BEGIN
-    --La entrada son 4 bits, cada uno corresponde a una plataforma, el orden es tresDS, PC, PS4, Xbox
-   
-    --Obtengo las plataformas por las que filtrar
-    tresDS := SUBSTR(plataforma_, 1, 1);
-    pc := SUBSTR(plataforma_, 2, 1);
-    ps4 := SUBSTR(plataforma_, 3, 1);
-    xbox := SUBSTR(plataforma_, 4, 1);
-     
-   
-    --Realizo la consulta y la guardo en la tabla
-    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)   
-    BULK COLLECT INTO resultado
-    FROM 
-        (
-          SELECT J.idJuego, J.nombre, J.plataforma, J.genero, J.pegi, J.esEdicionColeccionista coleccionista, J.esSeminuevo seminuevo, 
-                 J.esRetro retro, J.esDigital digital, R2.front, R2.precio *getMargenBeneficios precio, getStockJuego(J.idJuego) stock
-          FROM Juegos J INNER JOIN (  
-                                        --Obtener ademas el front
-                                        SELECT R.idJuego, R.fechaPedido, R.precio, M.front 
+                                        SELECT R.idJuego, R.fechaPedido, R.precio, M.front
                                         FROM (
                                               --Obtener el ultimo precio de cada juego
                                               SELECT DISTINCT F.idJuego, F.fechaPedido, F.Precio
@@ -2015,7 +1963,59 @@ BEGIN
                                                                     )
                                                                     AND F.idSocio = 0
                                               ORDER BY F.fechaPedido DESC
-                                              ) 
+                                              )
+                                              R INNER JOIN Multimedia M ON M.idMultimedia = R.idJuego
+                                                INNER JOIN Juegos J ON J.idJuego = M.idMultimedia
+                                        WHERE UPPER(J.nombre) LIKE ('%' || UPPER(nombre_) || '%')
+                                      )
+                                      R2 ON J.idJuego = R2.idJuego
+          ) A;
+
+   RETURN resultado;
+
+END getBusquedaPorNombre;
+/
+
+CREATE OR REPLACE FUNCTION getBusquedaPorPlataforma(plataforma_ IN VARCHAR) RETURN JuegoBusquedaTabla AS
+    tresDS CHAR(1);
+    pc CHAR(1);
+    ps4 CHAR(1);
+    xbox CHAR(1);
+    resultado JuegoBusquedaTabla;
+BEGIN
+    --La entrada son 4 bits, cada uno corresponde a una plataforma, el orden es tresDS, PC, PS4, Xbox
+
+    --Obtengo las plataformas por las que filtrar
+    tresDS := SUBSTR(plataforma_, 1, 1);
+    pc := SUBSTR(plataforma_, 2, 1);
+    ps4 := SUBSTR(plataforma_, 3, 1);
+    xbox := SUBSTR(plataforma_, 4, 1);
+
+
+    --Realizo la consulta y la guardo en la tabla
+    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
+    BULK COLLECT INTO resultado
+    FROM
+        (
+          SELECT J.idJuego, J.nombre, J.plataforma, J.genero, J.pegi, J.esEdicionColeccionista coleccionista, J.esSeminuevo seminuevo,
+                 J.esRetro retro, J.esDigital digital, R2.front, R2.precio *getMargenBeneficios precio, getStockJuego(J.idJuego) stock
+          FROM Juegos J INNER JOIN (
+                                        --Obtener ademas el front
+                                        SELECT R.idJuego, R.fechaPedido, R.precio, M.front
+                                        FROM (
+                                              --Obtener el ultimo precio de cada juego
+                                              SELECT DISTINCT F.idJuego, F.fechaPedido, F.Precio
+                                              FROM Facturas F
+                                              WHERE F.fechaPedido = (
+                                                                        --Obtener la ultima fecha de cada juego comprado
+                                                                        SELECT MAX(F_.fechaPedido)
+                                                                        FROM Facturas F_
+                                                                        WHERE F_.idJuego = F.idJuego AND F_.idSocio = 0
+                                                                    )
+                                                                    AND F.idSocio = 0
+                                              ORDER BY F.fechaPedido DESC
+                                              )
                                               R INNER JOIN Multimedia M ON M.idMultimedia = R.idJuego
                                       )
                                       R2 ON J.idJuego = R2.idJuego
@@ -2025,10 +2025,10 @@ BEGIN
                   ps4 = '1' AND UPPER(J.plataforma) = UPPER('PS4') OR
                   xbox = '1' AND UPPER(J.plataforma) = UPPER('Xbox'))
           ) A;
-       
- 
+
+
    RETURN resultado;
-   
+
 END getBusquedaPorPlataforma;
 /
 
@@ -2063,11 +2063,11 @@ BEGIN
     simulador := SUBSTR(genero_, 10, 1);
     deportes := SUBSTR(genero_, 11, 1);
     estrategia := SUBSTR(genero_, 12, 1);
-    
+
 
     --Realizo la consulta y la guardo en la tabla
-    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)   
+    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
     BULK COLLECT INTO resultado
     FROM TABLE (resultadoAnterior) A
     WHERE ( accion = '1' AND UPPER(A.genero) = UPPER('Action') OR
@@ -2089,7 +2089,7 @@ END getBusquedaPorGenero;
 /
 
 --La consulta con los where aplicados
-CREATE OR REPLACE FUNCTION getBusquedaFiltrada( nombre_ IN VARCHAR, pegiInferior_ IN INT, pegiSuperior_ IN INT, 
+CREATE OR REPLACE FUNCTION getBusquedaFiltrada( nombre_ IN VARCHAR, pegiInferior_ IN INT, pegiSuperior_ IN INT,
                                                 precioInferior IN FLOAT, precioSuperior IN FLOAT, atributos_ IN VARCHAR,
                                                 resAnt IN JuegoBusquedaTabla) RETURN JuegoBusquedaTabla AS
     nombreAux VARCHAR(20) := nombre_;
@@ -2102,16 +2102,16 @@ CREATE OR REPLACE FUNCTION getBusquedaFiltrada( nombre_ IN VARCHAR, pegiInferior
     retro_ CHAR(1);
     digital_ CHAR(1);
     resultado JuegoBusquedaTabla;
-BEGIN    
+BEGIN
     --Aplico los filtros y restricciones al precio, pegi y los atributos que me interesen
 
       --Veo si hay que buscar por un nombre
-    IF (nombre_ = NULL) THEN    
+    IF (nombre_ = NULL) THEN
         nombreAux := '';
     END IF;
-        
+
     --Veo si hay que filtrar por pegi
-    IF (pegiInferior_ = 0.0 AND pegiSuperior_ = 0.0) THEN    
+    IF (pegiInferior_ = 0.0 AND pegiSuperior_ = 0.0) THEN
         pegiInferiorAux := 0;
         pegiSuperiorAux := 99;
     END IF;
@@ -2121,21 +2121,21 @@ BEGIN
         precioInferiorAux := 0.0;
         precioSuperiorAux := 99999999.99;
     END IF;
-    
+
     --Obtengo los atributos por los que filtrar
     coleccionista_ := SUBSTR(atributos_, 1, 1);
     seminuevo_ := SUBSTR(atributos_, 2, 1);
     retro_ := SUBSTR(atributos_,3, 1);
     digital_ := SUBSTR(atributos_, 4, 1);
-  
+
     --Obtengo las plataformas y generos ya filtados y hago la nueva consulta
-    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock) 
+    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                            A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
     BULK COLLECT INTO resultado
     FROM TABLE(resAnt) A
     WHERE (
             --El nombre
-            (A.nombre LIKE '%' || UPPER(nombreAux) || '%' ) AND
+            (UPPER(A.nombre) LIKE ('%' || UPPER(nombreAux) || '%' )) AND
             --Pegi
             (A.pegi >= pegiInferiorAux AND A.pegi <= pegiSuperiorAux) AND
             --Precio
@@ -2158,39 +2158,39 @@ END getBusquedaFiltrada;
 --La consulta ordenada
 CREATE OR REPLACE FUNCTION getBusquedaOrdenada(ascSoN IN CHAR, orderBy IN VARCHAR, resAnt IN JuegoBusquedaTabla) RETURN JuegoBusquedaTabla AS
     resultado JuegoBusquedaTabla;
-BEGIN    
+BEGIN
     --Ordena la consulta, es 1 hot, cada bit representa un orden, nombre, pegi, precio, plataforma, genero y ascSoN = Y
 
     --Veo cual es el orden
     IF (ascSoN = 'Y') THEN
-    
+
           --Realizo la consulta y la guardo en la tabla
-          SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                                  A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)   
+          SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                                  A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
           BULK COLLECT INTO resultado
           FROM TABLE (resAnt) A
-          ORDER BY 
+          ORDER BY
               --Veo porque se ordena
               DECODE(orderBy, '10000', A.Nombre) ASC,
               DECODE(orderBy, '01000', A.pegi) ASC,
               DECODE(orderBy, '00100', A.precio) ASC,
               DECODE(orderBy, '00010', A.plataforma) ASC,
               DECODE(orderBy, '00001', A.genero) ASC;
-                
+
       ELSE
       --Realizo la consulta y la guardo en la tabla
-          SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
-                                  A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)   
+          SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
+                                  A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
           BULK COLLECT INTO resultado
           FROM TABLE (resAnt) A
-          ORDER BY 
+          ORDER BY
                       --Veo porque se ordena
                       DECODE(orderBy, '10000', A.Nombre) DESC,
                       DECODE(orderBy, '01000', A.pegi) DESC,
                       DECODE(orderBy, '00100', A.precio) DESC,
                       DECODE(orderBy, '00010', A.plataforma) DESC,
-                      DECODE(orderBy, '00001', A.genero) DESC;      
-      
+                      DECODE(orderBy, '00001', A.genero) DESC;
+
       END IF;
 
     RETURN resultado;
@@ -2198,8 +2198,8 @@ BEGIN
 END getBusquedaOrdenada;
 /
 
---La funcion de busqueda general  
-CREATE OR REPLACE FUNCTION getResultadoBusqueda(nombre_ IN VARCHAR, pegiInferior_ IN INT, pegiSuperior_ IN INT, 
+--La funcion de busqueda general
+CREATE OR REPLACE FUNCTION getResultadoBusqueda(nombre_ IN VARCHAR, pegiInferior_ IN INT, pegiSuperior_ IN INT,
                                                 precioInferior IN FLOAT, precioSuperior IN FLOAT, atributos_ IN VARCHAR,
                                                 genero_ IN VARCHAR, plataforma_ IN VARCHAR, ascSoN IN CHAR,
                                                 orderBy IN VARCHAR) RETURN JuegoBusquedaTabla AS
@@ -2207,15 +2207,15 @@ CREATE OR REPLACE FUNCTION getResultadoBusqueda(nombre_ IN VARCHAR, pegiInferior
 BEGIN
     --La consulta general que unifica todas las demas
 
-    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista, 
+    SELECT JuegoBusquedaObj(A.idJuego, A.nombre, A.plataforma, A.genero, A.pegi, A.coleccionista,
                             A.seminuevo, A.retro, A.digital, A.front, A.precio, A.stock)
     BULK COLLECT INTO resultado
     FROM TABLE (
         getBusquedaOrdenada(ascSoN, orderBy, (
             getBusquedaFiltrada(nombre_, pegiInferior_, pegiSuperior_, precioInferior, precioSuperior, atributos_, (
-                getBusquedaPorGenero(genero_, 
-                    getBusquedaPorPlataforma(plataforma_))))))) A;          
-    
+                getBusquedaPorGenero(genero_,
+                    getBusquedaPorPlataforma(plataforma_))))))) A;
+
     RETURN resultado;
 
 END getResultadoBusqueda;
