@@ -97,7 +97,7 @@ switch ($language) {
                     <div id="userCookie" class="">
                         <span>
                             <?php
-                                echo Hello." ".$_COOKIE['loginUser'];
+                                echo Hello." ".$_COOKIE['loginUser']."!!";
                             ?>
 
                         </span>
